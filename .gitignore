@@ -194,3 +194,9 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+# Unity stuff
+[Ll]ibrary
+*_[Dd]ata
+[Tt]emp
+*.exe
