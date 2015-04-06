@@ -99,6 +99,7 @@ GameObject:
   - 92: {fileID: 527733423}
   - 124: {fileID: 527733422}
   - 81: {fileID: 527733421}
+  - 114: {fileID: 527733426}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -171,3 +172,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &527733426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 527733420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78799c96cb29f934bba2d5c283a7b315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleShipComponents:
+  - {fileID: 107906, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
+  - {fileID: 195840, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
+  emptyShip: {fileID: 136252, guid: 9bab485663198ed43a1b61aa97cc66d7, type: 2}
+  samplePositions:
+  - {x: 0, y: 0}
+  - {x: 0, y: -1}
+  sampleDirections: 0000000000000000
+  sampleComponents: 0100000000000000
+  samplePosition: {x: 0, y: 0}

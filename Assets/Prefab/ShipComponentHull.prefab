@@ -37,12 +37,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 195840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e223e9e303ca6fc4eac5d1f07dad3fc9, type: 3}
+  m_Script: {fileID: 11500000, guid: 46da6aa25661eb948899efedbcacc986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  offset: {x: 0, y: 0}
   parentShip: {fileID: 0}
+  mass: 0
 --- !u!212 &21228016
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -67,7 +67,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d2614944016f11e4b9fcd39407e16898, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9911d9ff292976b4da8f948c9cbb9d17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

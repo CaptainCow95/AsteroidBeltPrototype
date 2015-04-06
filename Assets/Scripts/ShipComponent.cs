@@ -3,8 +3,11 @@
 public class ShipComponent : MonoBehaviour
 {
     public Direction direction;
-   // public Vector2 offset;
+
+    // public Vector2 offset;
     public GameObject parentShip;
+
+    public float mass;
 
     public enum Direction
     {
