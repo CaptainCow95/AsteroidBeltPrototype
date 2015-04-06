@@ -47,8 +47,6 @@ namespace AsteroidBelt
 
                 float totalTorque = Mathf.Clamp(headingCorrection, -maxTorque, maxTorque);
                 rigidBody.AddTorque(totalTorque);
-
-                Debug.Log("Torque: " + totalTorque);
             }
         }
     }
