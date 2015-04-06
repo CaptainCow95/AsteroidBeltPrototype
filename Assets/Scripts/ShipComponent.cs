@@ -3,8 +3,8 @@
 public class ShipComponent : MonoBehaviour
 {
     public Direction direction;
-    public Vector2 offset;
-    public Ship parentShip;
+   // public Vector2 offset;
+    public GameObject parentShip;
 
     public enum Direction
     {
@@ -17,8 +17,8 @@ public class ShipComponent : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        gameObject.transform.SetParent(parentShip.gameObject.transform);
-        gameObject.transform.localPosition = offset;
+        gameObject.transform.SetParent(parentShip.transform, false);
+        //gameObject.transform.localPosition = offset;
 
         switch (direction)
         {
