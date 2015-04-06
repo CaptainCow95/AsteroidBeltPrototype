@@ -18,7 +18,7 @@ public class ShipComponent : MonoBehaviour
     }
 
     // Use this for initialization
-    private void Start()
+    protected virtual void Start()
     {
         gameObject.transform.SetParent(parentShip.transform, false);
         //gameObject.transform.localPosition = offset;

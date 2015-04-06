@@ -55,12 +55,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 107906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46da6aa25661eb948899efedbcacc986, type: 3}
+  m_Script: {fileID: 11500000, guid: f19e43d9d878ec94fad35dc3bcc3ba38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
   parentShip: {fileID: 0}
   mass: 0
+  force: 1
 --- !u!212 &21292564
 SpriteRenderer:
   m_ObjectHideFlags: 1

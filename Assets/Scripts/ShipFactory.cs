@@ -18,11 +18,11 @@ public class ShipFactory : MonoBehaviour
         GameObject newShip;
 
         newShip = Instantiate(emptyShip, position, Quaternion.identity) as GameObject;
-        Ship ship = newShip.GetComponent("Ship") as Ship;
+        Ship ship = newShip.GetComponent<Ship>();
         for (int i = 0; i < shipComponents.Length; ++i)
         {
             GameObject newShipComponent = Instantiate(possibleShipComponents[shipComponents[i]], componentPositions[i], Quaternion.identity) as GameObject;
-            ShipComponent comp = newShipComponent.GetComponent("ShipComponent") as ShipComponent;
+            ShipComponent comp = newShipComponent.GetComponent<ShipComponent>();
             comp.parentShip = newShip;
             comp.direction = componentDirections[i];
             ship.addShipComponent(comp);

@@ -1,21 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
     public List<ShipComponent> shipComponents;
+    private Rigidbody2D rigidBody;
 
     public void addShipComponent(ShipComponent shipComponent)
     {
         shipComponents.Add(shipComponent);
-        Rigidbody2D rigidBody = gameObject.GetComponent("Rigidbody2D") as Rigidbody2D;
+        Rigidbody2D rigidBody = gameObject.GetComponent<Rigidbody2D>();
         rigidBody.mass += shipComponent.mass;
     }
 
     // Use this for initialization
     private void Start()
     {
-        Rigidbody2D rigidBody = gameObject.GetComponent("Rigidbody2D") as Rigidbody2D;
+        rigidBody = gameObject.GetComponent("Rigidbody2D") as Rigidbody2D;
         rigidBody.gravityScale = 0;
     }
 
@@ -27,5 +29,16 @@ public class Ship : MonoBehaviour
 
         horizontal = (int)Input.GetAxisRaw("Horizontal");
         vertical = (int)Input.GetAxisRaw("Vertical");
+
+        Vector2 vec = Input.mousePosition - Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        var angle = Mathf.Atan2(-vec.x, vec.y) * Mathf.Rad2Deg;
+
+        rigidBody.rotation = angle;
+
+        foreach (var item in shipComponents.Where(e => e is Thruster))
+        {
+            Vector2 force = ((Thruster)item).GetThrust(new Vector2(horizontal, vertical));
+            rigidBody.AddForce(transform.rotation * (Vector3)force);
+        }
     }
 }

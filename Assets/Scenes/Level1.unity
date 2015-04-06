@@ -190,6 +190,10 @@ MonoBehaviour:
   samplePositions:
   - {x: 0, y: 0}
   - {x: 0, y: -1}
-  sampleDirections: 0000000000000000
-  sampleComponents: 0100000000000000
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  - {x: 0, y: 2}
+  - {x: 0, y: 1}
+  sampleDirections: 000000000000000001000000030000000200000000000000
+  sampleComponents: 010000000000000000000000000000000000000001000000
   samplePosition: {x: 0, y: 0}
