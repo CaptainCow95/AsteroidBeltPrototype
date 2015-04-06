@@ -1,22 +1,27 @@
-﻿using Assets.Scripts;
+﻿using AsteroidBelt.Assets.Scripts;
+using AsteroidBelt.ShipComponents;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+namespace AsteroidBelt
 {
-    public GameObject emptyShip;
-    public GameObject[] possibleShipComponents;
-
-    public void CreateShip(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, int[] shipComponents)
+    public class GameManager : Singleton<GameManager>
     {
-        GameObject newShip = GameObject.Instantiate(emptyShip, position, Quaternion.identity) as GameObject;
-        Ship ship = newShip.GetComponent<Ship>();
-        for (int i = 0; i < shipComponents.Length; ++i)
+        public GameObject emptyShip;
+        public GameObject[] possibleShipComponents;
+
+        public void CreateShip(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, int[] shipComponents, bool playerControlled)
         {
-            GameObject newShipComponent = GameObject.Instantiate(possibleShipComponents[shipComponents[i]], componentPositions[i], Quaternion.identity) as GameObject;
-            ShipComponent comp = newShipComponent.GetComponent<ShipComponent>();
-            comp.parentShip = newShip;
-            comp.direction = componentDirections[i];
-            ship.addShipComponent(comp);
+            GameObject newShip = GameObject.Instantiate(emptyShip, position, Quaternion.identity) as GameObject;
+            Ship ship = newShip.GetComponent<Ship>();
+            ship.playerControlled = playerControlled;
+            for (int i = 0; i < shipComponents.Length; ++i)
+            {
+                GameObject newShipComponent = GameObject.Instantiate(possibleShipComponents[shipComponents[i]], componentPositions[i], Quaternion.identity) as GameObject;
+                ShipComponent comp = newShipComponent.GetComponent<ShipComponent>();
+                comp.parentShip = newShip;
+                comp.direction = componentDirections[i];
+                ship.addShipComponent(comp);
+            }
         }
     }
 }

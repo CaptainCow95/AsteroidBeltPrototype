@@ -1,20 +1,18 @@
-﻿using UnityEngine;
+﻿using AsteroidBelt.ShipComponents;
+using UnityEngine;
 
-public class LoadLevel1 : MonoBehaviour
+namespace AsteroidBelt
 {
-    public int[] sampleComponents;
-    public ShipComponent.Direction[] sampleDirections;
-    public Vector2 samplePosition;
-    public Vector2[] samplePositions;
-
-    // Use this for initialization
-    private void Awake()
+    public class LoadLevel1 : MonoBehaviour
     {
-        GameManager.Instance.CreateShip(samplePosition, samplePositions, sampleDirections, sampleComponents);
-    }
+        public int[] sampleComponents;
+        public ShipComponent.Direction[] sampleDirections;
+        public Vector2 samplePosition;
+        public Vector2[] samplePositions;
 
-    // Update is called once per frame
-    private void Update()
-    {
+        private void Awake()
+        {
+            GameManager.Instance.CreateShip(samplePosition, samplePositions, sampleDirections, sampleComponents, true);
+        }
     }
 }

@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e680a273aa4e249bc1daa4588e75a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sampleComponents: 000000000100000001000000010000000100000000000000
+  sampleComponents: 020000000100000001000000010000000100000000000000
   sampleDirections: 000000000000000001000000030000000200000000000000
   samplePosition: {x: 0, y: 0}
   samplePositions:
@@ -209,3 +209,4 @@ MonoBehaviour:
   possibleShipComponents:
   - {fileID: 195840, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
   - {fileID: 107906, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
+  - {fileID: 178522, guid: 7c7d3a00add00a94d8911bdba4ac5ed9, type: 2}

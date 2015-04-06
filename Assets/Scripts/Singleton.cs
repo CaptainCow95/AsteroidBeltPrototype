@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace AsteroidBelt
 {
-    // Found at http://devmag.org.za/2012/07/12/50-tips-for-working-with-unity-best-practices/
-    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+    namespace Assets.Scripts
     {
-        private static T instance;
-
-        public static T Instance
+        // Found at http://devmag.org.za/2012/07/12/50-tips-for-working-with-unity-best-practices/
+        public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = (T)FindObjectOfType(typeof(T));
+            private static T instance;
 
+            public static T Instance
+            {
+                get
+                {
                     if (instance == null)
                     {
-                        Debug.LogError("An instance of " + typeof(T) + " was used, but there wasn't one in the scene.");
-                    }
-                }
+                        instance = (T)FindObjectOfType(typeof(T));
 
-                return instance;
+                        if (instance == null)
+                        {
+                            Debug.LogError("An instance of " + typeof(T) + " was used, but there wasn't one in the scene.");
+                        }
+                    }
+
+                    return instance;
+                }
             }
         }
     }

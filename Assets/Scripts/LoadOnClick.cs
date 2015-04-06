@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public class LoadOnClick : MonoBehaviour
+namespace AsteroidBelt
 {
-    public void LoadScene(int level)
+    public class LoadOnClick : MonoBehaviour
     {
-        Application.LoadLevel(level);
+        public void LoadScene(int level)
+        {
+            Application.LoadLevel(level);
+        }
     }
 }
