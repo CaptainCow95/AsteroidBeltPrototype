@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emptyShip: {fileID: 136252, guid: 9bab485663198ed43a1b61aa97cc66d7, type: 2}
+  asteroid: {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
   possibleShipComponents:
   - {fileID: 195840, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
   - {fileID: 107906, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
