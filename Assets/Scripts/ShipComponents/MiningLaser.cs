@@ -17,10 +17,25 @@ namespace AsteroidBelt.ShipComponents
             {
                 canFire = false;
                 timeLeft = cooldown;
+                float distance = range;
 
+                RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.rotation * new Vector3(0, 1));
+                if (hit.collider != null)
+                {
+                    if (hit.collider == null)
+                        Debug.Log("collider is null");
+                    GameObject objectHit = hit.collider.gameObject;
+                    distance = Vector2.Distance(gameObject.transform.position, hit.point);
+                }
+                Laser laserComponent = laser.GetComponent<Laser>();
+                laserComponent.laserRange = Mathf.Min(range, distance);
                 GameObject newLaser = Instantiate(laser, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-                Laser laserComponent = newLaser.GetComponent<Laser>();
             }
+        }
+
+        protected override void Start()
+        {
+            base.Start();
         }
 
         protected override void Update()
