@@ -1,4 +1,5 @@
 ﻿using AsteroidBelt.ShipComponents;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -72,6 +73,50 @@ namespace AsteroidBelt
                 {
                     // speed up
                     rigidBody.AddTorque(maxTorque * Time.deltaTime * ((angle < 0) ? 1 : -1));
+                }
+
+                if (Math.Abs(Input.GetAxisRaw("Horizontal")) < float.Epsilon && Math.Abs(Input.GetAxisRaw("Vertical")) < float.Epsilon)
+                {
+                    // No ship movement input detected, slowing ship down
+                    Vector2 velocity = transform.InverseTransformDirection(rigidBody.velocity);
+
+                    if (Math.Abs(velocity.x) < 0.1f)
+                    {
+                        velocity.x = 0;
+                        rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+                    }
+
+                    if (Math.Abs(velocity.y) < 0.1f)
+                    {
+                        velocity.y = 0;
+                        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+                    }
+
+                    foreach (var item in shipComponents)
+                    {
+                        if (!(item is Thruster))
+                        {
+                            continue;
+                        }
+
+                        if (item.direction == ShipComponent.Direction.Up && velocity.y < -float.Epsilon)
+                        {
+                            Debug.Log("Adding force");
+                            rigidBody.AddForce(transform.rotation * ((Thruster)item).GetThrust(new Vector2(0, 1)) * Time.deltaTime);
+                        }
+                        else if (item.direction == ShipComponent.Direction.Down && velocity.y > float.Epsilon)
+                        {
+                            rigidBody.AddForce(transform.rotation * ((Thruster)item).GetThrust(new Vector2(0, -1)) * Time.deltaTime);
+                        }
+                        else if (item.direction == ShipComponent.Direction.Left && velocity.x > float.Epsilon)
+                        {
+                            rigidBody.AddForce(transform.rotation * ((Thruster)item).GetThrust(new Vector2(-1, 0)) * Time.deltaTime);
+                        }
+                        else if (item.direction == ShipComponent.Direction.Right && velocity.x < -float.Epsilon)
+                        {
+                            rigidBody.AddForce(transform.rotation * ((Thruster)item).GetThrust(new Vector2(1, 0)) * Time.deltaTime);
+                        }
+                    }
                 }
             }
         }

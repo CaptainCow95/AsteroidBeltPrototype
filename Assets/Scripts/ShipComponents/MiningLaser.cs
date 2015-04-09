@@ -23,11 +23,7 @@ namespace AsteroidBelt.ShipComponents
             }
         }
 
-        private void spawnLaser(Vector2 target, float range)
-        {
-        }
-
-        private void Update()
+        protected override void Update()
         {
             base.Update();
             if (!canFire)
@@ -38,6 +34,10 @@ namespace AsteroidBelt.ShipComponents
                     canFire = true;
                 }
             }
+        }
+
+        private void spawnLaser(Vector2 target, float range)
+        {
         }
     }
 }
