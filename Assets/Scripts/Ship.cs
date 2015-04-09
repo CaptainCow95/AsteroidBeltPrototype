@@ -1,6 +1,5 @@
 ﻿using AsteroidBelt.ShipComponents;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace AsteroidBelt
@@ -9,14 +8,12 @@ namespace AsteroidBelt
     {
         public bool playerControlled;
         public List<ShipComponent> shipComponents;
-        private readonly FloatPid headingPid = new FloatPid(1f, 0f, 0.5f);
         private Rigidbody2D rigidBody;
 
         public void addShipComponent(ShipComponent shipComponent)
         {
             shipComponents.Add(shipComponent);
-            Rigidbody2D rigidBody = gameObject.GetComponent<Rigidbody2D>();
-            rigidBody.mass += shipComponent.mass;
+            gameObject.GetComponent<Rigidbody2D>().mass += shipComponent.mass;
         }
 
         private void Start()
@@ -29,24 +26,41 @@ namespace AsteroidBelt
         {
             if (playerControlled)
             {
-                foreach (var item in shipComponents.Where(e => e is Thruster))
+                float shipMass = 0;
+                float maxTorque = 0;
+                foreach (var item in shipComponents)
                 {
-                    Vector2 force = ((Thruster)item).GetThrust(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
-                    rigidBody.AddForce(transform.rotation * force);
+                    shipMass += item.mass;
+
+                    if (item is Thruster)
+                    {
+                        Vector2 force = ((Thruster)item).GetThrust(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+                        rigidBody.AddForce(transform.rotation * force * Time.deltaTime);
+                    }
+                    else if (item is Gryoscope)
+                    {
+                        maxTorque += ((Gryoscope)item).torque;
+                    }
                 }
 
-                float maxTorque = shipComponents.Where(e => e is Gryoscope).Sum(item => ((Gryoscope)item).torque);
-
                 Vector2 vec = Input.mousePosition - Camera.main.WorldToScreenPoint(gameObject.transform.position);
-                var angle = Mathf.Atan2(-vec.x, vec.y) * Mathf.Rad2Deg;
-                angle = rigidBody.rotation - angle;
-                angle += angle > 180 ? -360 : angle < -180 ? 360 : 0;
+                float angle = Mathf.Atan2(-vec.x, vec.y) * Mathf.Rad2Deg;
+                angle = rigidBody.rotation % 360 - angle;
+                angle += angle < -180 ? 360 : angle > 180 ? -360 : 0;
 
-                var headingError = -angle;
-                var headingCorrection = headingPid.Update(headingError);
+                // distance = (v0 + vf) / 2 * time where time is velocity / acceleration where acceleration is torque / mass
+                float distance = (rigidBody.angularVelocity / 2) * Mathf.Abs(rigidBody.angularVelocity / (maxTorque / shipMass));
 
-                float totalTorque = Mathf.Clamp(headingCorrection, -maxTorque, maxTorque);
-                rigidBody.AddTorque(totalTorque);
+                if (Mathf.Abs(distance) > Mathf.Abs(angle))
+                {
+                    // slow down
+                    rigidBody.AddTorque(maxTorque * Time.deltaTime * ((rigidBody.angularVelocity < 0) ? 1 : -1));
+                }
+                else
+                {
+                    // speed up
+                    rigidBody.AddTorque(maxTorque * Time.deltaTime * ((angle < 0) ? 1 : -1));
+                }
             }
         }
     }

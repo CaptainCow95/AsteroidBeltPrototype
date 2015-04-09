@@ -13,7 +13,7 @@ namespace AsteroidBelt
         public void CreateAsteroid(Vector2 position, float radius, int numberOfVertices, float mineralRating)
         {
             GameObject newAsteroid = Instantiate(asteroid, position, Quaternion.identity) as GameObject;
-            Asteroid asteroidComponent = asteroid.GetComponent<Asteroid>();
+            Asteroid asteroidComponent = newAsteroid.GetComponent<Asteroid>();
             asteroidComponent.radius = radius;
             asteroidComponent.numberOfVertices = numberOfVertices;
             asteroidComponent.mineralRating = mineralRating;
@@ -26,7 +26,7 @@ namespace AsteroidBelt
             ship.playerControlled = playerControlled;
             for (int i = 0; i < shipComponents.Length; ++i)
             {
-                GameObject newShipComponent = GameObject.Instantiate(possibleShipComponents[shipComponents[i]], componentPositions[i], Quaternion.identity) as GameObject;
+                GameObject newShipComponent = Instantiate(possibleShipComponents[shipComponents[i]], componentPositions[i], Quaternion.identity) as GameObject;
                 ShipComponent comp = newShipComponent.GetComponent<ShipComponent>();
                 comp.parentShip = newShip;
                 comp.direction = componentDirections[i];

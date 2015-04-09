@@ -26,10 +26,10 @@ public class Asteroid : MonoBehaviour
         Vector2[] points = new Vector2[newVertices.Length];
         for (int i = 1; i < newVertices.Length; i++)
         {
-            points[i] = newVertices[i];
+            points[i - 1] = newVertices[i];
         }
 
-        points[points.Length] = points[0];
+        points[points.Length - 1] = points[0];
         collider.points = points;
     }
 
