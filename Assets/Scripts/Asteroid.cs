@@ -1,16 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public float radius;
     public float mineralRating;
-    public int numberOfVertices;
-
-    private Vector3[] newVertices;
     public Vector2[] newUV;
+    public int numberOfVertices;
+    public float radius;
     private int[] newTriangles;
+    private Vector3[] newVertices;
+
+    private void CreateMesh()
+    {
+        CreateVertices();
+        CreateTriangles();
+        Mesh mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = mesh;
+        mesh.vertices = newVertices;
+        mesh.uv = newUV;
+        mesh.triangles = newTriangles;
+
+        PolygonCollider2D collider = GetComponent<PolygonCollider2D>();
+        Vector2[] points = new Vector2[(newVertices.Length / 2) + 1];
+        for (int i = 0; i < newVertices.Length / 2; i++)
+        {
+            points[i] = newVertices[i];
+        }
+        points[points.Length] = newVertices[0];
+        collider.points = points;
+    }
 
     private void CreateTriangles()
     {
@@ -38,26 +56,6 @@ public class Asteroid : MonoBehaviour
             theta -= (2f * Mathf.PI) / (float)numberOfVertices;
         }
         newVertices = vertices.ToArray();
-    }
-
-    private void CreateMesh()
-    {
-        CreateVertices();
-        CreateTriangles();
-        Mesh mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = mesh;
-        mesh.vertices = newVertices;
-        mesh.uv = newUV;
-        mesh.triangles = newTriangles;
-
-        PolygonCollider2D collider = GetComponent<PolygonCollider2D>();
-        Vector2[] points = new Vector2[(newVertices.Length / 2) + 1];
-        for (int i = 0; i < newVertices.Length / 2; i++)
-        {
-            points[i] = newVertices[i];
-        }
-        points[points.Length] = newVertices[0];
-        collider.points = points;
     }
 
     // Use this for initialization
