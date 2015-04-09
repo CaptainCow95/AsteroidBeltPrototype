@@ -16,6 +16,9 @@ namespace AsteroidBelt.ShipComponents
             Right
         }
 
+        protected virtual void Update(){
+        }
+
         protected virtual void Start()
         {
             gameObject.transform.SetParent(parentShip.transform, false);

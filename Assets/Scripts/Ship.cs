@@ -41,6 +41,14 @@ namespace AsteroidBelt
                     {
                         maxTorque += ((Gryoscope)item).torque;
                     }
+                    else if (item is MiningLaser)
+                    {
+                        if (Input.GetMouseButtonDown(1))
+                        {
+                            ((MiningLaser)item).Fire();
+                        }
+                    }
+
                 }
 
                 Vector2 vec = Input.mousePosition - Camera.main.WorldToScreenPoint(gameObject.transform.position);
