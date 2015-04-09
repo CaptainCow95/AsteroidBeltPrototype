@@ -13,7 +13,7 @@ namespace AsteroidBelt
         private void Awake()
         {
             GameManager.Instance.CreateShip(samplePosition, samplePositions, sampleDirections, sampleComponents, true);
-            GameManager.Instance.CreateAsteroid(new Vector2(5.0f, 0f), 3, 16, 300);
+            GameManager.Instance.CreateAsteroid(new Vector2(5.0f, 0f), 1, 16, 300);
         }
     }
 }
