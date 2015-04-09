@@ -80,9 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  mass: 0
+  mass: 1
   parentShip: {fileID: 0}
-  force: 1
+  force: 1000
 --- !u!212 &21292564
 SpriteRenderer:
   m_ObjectHideFlags: 1

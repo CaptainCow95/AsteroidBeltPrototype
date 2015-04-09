@@ -55,9 +55,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  mass: 0
+  mass: 1
   parentShip: {fileID: 0}
-  torque: 3
+  torque: 1000
 --- !u!212 &21218384
 SpriteRenderer:
   m_ObjectHideFlags: 1
