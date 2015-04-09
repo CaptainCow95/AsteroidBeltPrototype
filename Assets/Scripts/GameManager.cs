@@ -33,5 +33,26 @@ namespace AsteroidBelt
                 ship.addShipComponent(comp);
             }
         }
+
+        private void Update()
+        {
+            var obj = GameObject.FindGameObjectWithTag("PlayerShip");
+            if (obj != null)
+            {
+                var pos = transform.position;
+                pos.x = obj.transform.position.x;
+                pos.y = obj.transform.position.y;
+                transform.position = pos;
+            }
+
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                Camera.main.orthographicSize = Mathf.Min(Camera.main.orthographicSize + 1, 20);
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize - 1, 3);
+            }
+        }
     }
 }

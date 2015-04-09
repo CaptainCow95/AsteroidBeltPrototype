@@ -20,6 +20,11 @@ namespace AsteroidBelt
         {
             rigidBody = gameObject.GetComponent<Rigidbody2D>();
             rigidBody.gravityScale = 0;
+
+            if (playerControlled)
+            {
+                gameObject.tag = "PlayerShip";
+            }
         }
 
         private void Update()
@@ -48,7 +53,6 @@ namespace AsteroidBelt
                             ((MiningLaser)item).Fire();
                         }
                     }
-
                 }
 
                 Vector2 vec = Input.mousePosition - Camera.main.WorldToScreenPoint(gameObject.transform.position);
