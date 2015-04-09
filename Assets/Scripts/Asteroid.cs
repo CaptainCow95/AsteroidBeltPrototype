@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace AsteroidBelt
@@ -65,6 +66,7 @@ namespace AsteroidBelt
             }
 
             newVertices = vertices.ToArray();
+            newUV = newVertices.Select(e => new Vector2(e.x, e.y)).ToArray();
         }
 
         // Use this for initialization

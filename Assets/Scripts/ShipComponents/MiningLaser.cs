@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AsteroidBelt.ShipComponents
 {
     public class MiningLaser : ShipComponent
     {
-        public float yield;
         public float cooldown;
-        public float range;
         public GameObject laser;
-
-        bool canFire;
-        float timeLeft;
-
+        public float range;
+        public float yield;
+        private bool canFire;
+        private float timeLeft;
 
         public void Fire()
         {
@@ -23,21 +20,15 @@ namespace AsteroidBelt.ShipComponents
 
                 GameObject newLaser = Instantiate(laser, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
                 Laser laserComponent = newLaser.GetComponent<Laser>();
-                
-
-
             }
-
         }
 
-        void spawnLaser(Vector2 target, float range)
+        private void spawnLaser(Vector2 target, float range)
         {
-
         }
 
-        void Update()
+        private void Update()
         {
-
             base.Update();
             if (!canFire)
             {
@@ -47,9 +38,6 @@ namespace AsteroidBelt.ShipComponents
                     canFire = true;
                 }
             }
-
-
         }
-
     }
 }

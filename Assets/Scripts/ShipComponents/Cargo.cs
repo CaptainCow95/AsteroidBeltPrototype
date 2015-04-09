@@ -5,8 +5,8 @@
         public float capacity;
         public float usedSpace;
 
-
-        public float getRemainingSpace(){
+        public float getRemainingSpace()
+        {
             return capacity - usedSpace;
         }
 

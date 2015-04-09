@@ -16,9 +16,6 @@ namespace AsteroidBelt.ShipComponents
             Right
         }
 
-        protected virtual void Update(){
-        }
-
         protected virtual void Start()
         {
             gameObject.transform.SetParent(parentShip.transform, false);
@@ -41,6 +38,10 @@ namespace AsteroidBelt.ShipComponents
                     gameObject.transform.localRotation = Quaternion.Euler(0, 0, 270);
                     break;
             }
+        }
+
+        protected virtual void Update()
+        {
         }
     }
 }
