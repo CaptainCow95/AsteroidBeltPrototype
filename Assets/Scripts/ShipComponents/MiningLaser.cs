@@ -29,6 +29,13 @@ namespace AsteroidBelt.ShipComponents
                         Debug.Log("collider is null");
                     GameObject objectHit = hit.collider.gameObject;
                     distance = Vector2.Distance(castfrom.transform.position, hit.point);
+
+                    Asteroid asteroid = objectHit.GetComponent<Asteroid>();
+                    if (asteroid != null)
+                    {
+                        float amountForCargo = Mathf.Min(asteroid.mineralRating, yield);
+                        asteroid.mineralRating -= yield;
+                    }
                 }
                 Laser laserComponent = laser.GetComponent<Laser>();
                 laserComponent.laserRange = Mathf.Min(range, distance);

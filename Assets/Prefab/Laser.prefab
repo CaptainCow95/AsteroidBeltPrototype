@@ -85,9 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f5dc17e27aa614f80b96e3db2731fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserRange: 10
+  laserRange: 6.36980867
   laserWidth: .100000001
-  lifeTime: 3
+  lifeTime: .5
   source: {x: 0, y: 0}
   target: {x: 0, y: 0}
 --- !u!1001 &100100000

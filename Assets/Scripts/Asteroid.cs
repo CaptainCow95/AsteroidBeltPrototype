@@ -9,7 +9,7 @@ namespace AsteroidBelt
         public float mineralRating;
         public Vector2[] newUV;
         public int numberOfVertices;
-        public float radius;
+        public float radiusPerMineral;
         private int[] newTriangles;
         private Vector3[] newVertices;
 
@@ -58,7 +58,7 @@ namespace AsteroidBelt
             float theta = (2f * Mathf.PI);
             while (theta > 0 + (Mathf.Epsilon))
             {
-                float randRad = Random.Range(radius * .90f, radius * 1.10f);
+                float randRad = Random.Range(.90f, 1.10f);
                 float x = randRad * Mathf.Cos(theta);
                 float y = randRad * Mathf.Sin(theta);
                 vertices.Add(new Vector3(x, y));
@@ -78,7 +78,11 @@ namespace AsteroidBelt
         // Update is called once per frame
         private void Update()
         {
-            float scale = mineralRating / 100f;
+            if (mineralRating <= 0)
+            {
+                Destroy(gameObject);
+            }
+            float scale = Mathf.Ceil(2f * mineralRating * radiusPerMineral) / 2f;
             gameObject.transform.localScale = new Vector3(scale, scale, 1);
         }
     }

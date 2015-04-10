@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 461312}
   - 114: {fileID: 11435828}
   - 212: {fileID: 21293280}
-  - 61: {fileID: 6142152}
+  - 60: {fileID: 6093284}
   m_Layer: 0
   m_Name: ShipComponentMiningLaser
   m_TagString: Untagged
@@ -30,19 +30,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6142152
-BoxCollider2D:
+--- !u!60 &6093284
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199828}
   m_Enabled: 1
-  m_Material: {fileID: 6200000, guid: 662db8a83da89df438cc6137502aba2c, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Points:
+    m_Paths:
+    - - {x: -.119999997, y: .25999999}
+      - {x: -.469999999, y: -.25999999}
+      - {x: -.469999999, y: -.5}
+      - {x: .469999999, y: -.5}
+      - {x: .469999999, y: -.200000003}
+      - {x: .119999997, y: .25999999}
 --- !u!114 &11435828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,10 +63,12 @@ MonoBehaviour:
   direction: 0
   mass: 1
   parentShip: {fileID: 0}
+  castfromLocation: {x: 0, y: .400000006}
   cooldown: 1
+  emptyObject: {fileID: 186410, guid: 6fc52c472392a874ea9fe83e43ee07af, type: 2}
   laser: {fileID: 120128, guid: c6f8bb86e3472ca4392591936ba1f33f, type: 2}
-  range: 0
-  yield: 0
+  range: 10
+  yield: 100
 --- !u!212 &21293280
 SpriteRenderer:
   m_ObjectHideFlags: 1

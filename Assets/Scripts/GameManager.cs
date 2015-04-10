@@ -10,11 +10,11 @@ namespace AsteroidBelt
         public GameObject[] shipComponentPrefabs;
         public GameObject shipPrefab;
 
-        public void CreateAsteroid(Vector2 position, float radius, int numberOfVertices, float mineralRating)
+        public void CreateAsteroid(Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
         {
             GameObject asteroidObject = Instantiate(asteroidPrefab, position, Quaternion.identity) as GameObject;
             Asteroid asteroid = asteroidObject.GetComponent<Asteroid>();
-            asteroid.radius = radius;
+            asteroid.radiusPerMineral = radiusPerMineral;
             asteroid.numberOfVertices = numberOfVertices;
             asteroid.mineralRating = mineralRating;
         }
