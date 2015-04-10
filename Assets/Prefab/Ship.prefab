@@ -35,9 +35,9 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136252}
-  m_Mass: 1
-  m_LinearDrag: .100000001
-  m_AngularDrag: .0500000007
+  m_Mass: 9.99999975e-05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 0
@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e982fc98bc548254ba51abc76cbdd997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControlled: 0
   shipComponents: []
 --- !u!1001 &100100000
 Prefab:
