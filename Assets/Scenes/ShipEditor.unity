@@ -908,6 +908,7 @@ GameObject:
   - 92: {fileID: 2019991804}
   - 124: {fileID: 2019991803}
   - 81: {fileID: 2019991802}
+  - 114: {fileID: 2019991807}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -980,6 +981,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &2019991807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019991801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23914b358a2c024f84219593cc7a690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefab: {fileID: 0}
+  shipComponentPrefabs: []
+  shipPrefab: {fileID: 0}
 --- !u!1 &2092969325
 GameObject:
   m_ObjectHideFlags: 0
