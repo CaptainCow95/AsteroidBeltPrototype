@@ -45,15 +45,15 @@ namespace AsteroidBelt
         private void Start()
         {
             //instantiate all the editor tiles
-            for (int x = -TilesPerSide / 2; x < TilesPerSide / 2; ++x)
+            for (int x = 0; x < TilesPerSide; ++x)
             {
-                for (int y = -TilesPerSide / 2; y < TilesPerSide / 2; ++y)
+                for (int y = 0; y < TilesPerSide; ++y)
                 {
                     GameObject newEditorTile = Instantiate(EditorTilePrefab) as GameObject;
                     GameObject canvas = GameObject.FindGameObjectWithTag("Canvas");
                     newEditorTile.transform.SetParent(canvas.transform);
                     Rect editorRect = newEditorTile.GetComponent<RectTransform>().rect;
-                    newEditorTile.GetComponent<RectTransform>().anchoredPosition = new Vector2(x * editorRect.width, y * editorRect.height);
+                    newEditorTile.GetComponent<RectTransform>().anchoredPosition = new Vector2((x - TilesPerSide / 2) * editorRect.width, (y - TilesPerSide / 2) * editorRect.height);
                     newEditorTile.tag = "EditorTile";
                 }
             }

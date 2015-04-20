@@ -1305,7 +1305,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentPart: {fileID: 0}
-  DropValid: 0
   EditorTilePrefab: {fileID: 127928, guid: 275df6750bbdb3b4782ba2aedfeed030, type: 2}
   TilesPerSide: 5
 --- !u!1 &2092969325
