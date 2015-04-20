@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ShipEditorPart : MonoBehaviour, IBeginDragHandler
@@ -27,7 +28,27 @@ public class ShipEditorPart : MonoBehaviour, IBeginDragHandler
 			ShipEditor.Instance.CurrentPart.AddComponent<RectTransform>();
 
 			// Disable drag events
-			ShipEditor.Instance.CurrentPart.layer = 2;
+			SetLayerRecursively(ShipEditor.Instance.CurrentPart, 2);
+		}
+	}
+
+	private static void SetLayerRecursively(GameObject obj, int layer)
+	{
+		if (obj == null)
+		{
+			return;
+		}
+
+		obj.layer = layer;
+
+		foreach (Transform child in obj.GetComponentsInChildren<Transform>(true).Except(obj.GetComponents<Transform>()))
+		{
+			if (child == null)
+			{
+				continue;
+			}
+
+			SetLayerRecursively(child.gameObject, layer);
 		}
 	}
 }
