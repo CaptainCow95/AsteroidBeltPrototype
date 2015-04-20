@@ -5,8 +5,10 @@ namespace AsteroidBelt.ShipComponents
     public class ShipComponent : MonoBehaviour
     {
         public Direction ComponentDirection;
+        public ShipComponentType componentType;
         public float Mass;
         public GameObject ParentShip;
+        public PossibleConnection[] possibleConnections;
 
         public enum Direction
         {
@@ -14,6 +16,13 @@ namespace AsteroidBelt.ShipComponents
             Right = 1,
             Down = 2,
             Left = 3
+        }
+
+        public enum PossibleConnection
+        {
+            No = 0,
+            Yes = 1,
+            MustBeEmpty = 2
         }
 
         protected virtual void Start()

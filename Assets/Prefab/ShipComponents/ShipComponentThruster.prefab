@@ -80,8 +80,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentDirection: 0
+  componentType: 1
   Mass: 1
   ParentShip: {fileID: 0}
+  possibleConnections: 02000000000000000100000000000000
   force: 1000
 --- !u!212 &21298636
 SpriteRenderer:
