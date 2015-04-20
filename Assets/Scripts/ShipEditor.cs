@@ -18,7 +18,7 @@ namespace AsteroidBelt
 				{
 					if (!DropValid)
 					{
-						//Destroy(CurrentPart);
+						Destroy(CurrentPart);
 					}
 
 					CurrentPart = null;

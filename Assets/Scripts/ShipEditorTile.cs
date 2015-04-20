@@ -4,10 +4,37 @@ using UnityEngine.EventSystems;
 
 namespace AsteroidBelt
 {
-	public class ShipEditorTile : MonoBehaviour, IDropHandler
+	public class ShipEditorTile : MonoBehaviour, IBeginDragHandler, IDropHandler
 	{
 		public ShipComponent.Direction Direction;
 		public GameObject Part;
+
+		public void OnBeginDrag(PointerEventData eventData)
+		{
+			if (Part == null)
+			{
+				return;
+			}
+
+			bool onObject = true;
+
+			var rect = GetComponent<RectTransform>().rect;
+			rect.x += transform.position.x;
+			rect.y += transform.position.y;
+			if (eventData.position.x < rect.x ||
+				eventData.position.x > rect.xMax ||
+				eventData.position.y < rect.y ||
+				eventData.position.y > rect.yMax)
+			{
+				onObject = false;
+			}
+
+			if (onObject)
+			{
+				ShipEditor.Instance.CurrentPart = Part;
+				Part = null;
+			}
+		}
 
 		public void OnDrop(PointerEventData eventData)
 		{
@@ -33,7 +60,14 @@ namespace AsteroidBelt
 				return;
 			}
 
-			if (Input.GetMouseButtonDown(1))
+			var rect = GetComponent<RectTransform>().rect;
+			rect.x += transform.position.x;
+			rect.y += transform.position.y;
+			if (Input.GetMouseButtonDown(1) &&
+				Input.mousePosition.x > rect.x &&
+				Input.mousePosition.x < rect.xMax &&
+				Input.mousePosition.y > rect.y &&
+				Input.mousePosition.y < rect.yMax)
 			{
 				Direction++;
 				if ((int)Direction > 3)
