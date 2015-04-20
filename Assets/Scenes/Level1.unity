@@ -209,9 +209,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
   shipComponentPrefabs:
-  - {fileID: 167766, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
-  - {fileID: 135282, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
-  - {fileID: 115424, guid: 7c7d3a00add00a94d8911bdba4ac5ed9, type: 2}
-  - {fileID: 188954, guid: 5b0042f5a4ea48e42a4da11ba1b8392f, type: 2}
-  - {fileID: 119776, guid: cb6389d9fbdac32489d7c548c2809bcc, type: 2}
+  - {fileID: 120158, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
+  - {fileID: 132378, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
+  - {fileID: 116784, guid: 7c7d3a00add00a94d8911bdba4ac5ed9, type: 2}
+  - {fileID: 187968, guid: c8a9873bee330a143a6759ed5a4a0171, type: 2}
+  - {fileID: 187448, guid: cb6389d9fbdac32489d7c548c2809bcc, type: 2}
   shipPrefab: {fileID: 136252, guid: 9bab485663198ed43a1b61aa97cc66d7, type: 2}
