@@ -7,7 +7,6 @@ namespace AsteroidBelt
     public class ShipEditor : Singleton<ShipEditor>
     {
         public GameObject CurrentPart;
-        public bool DropValid;
         public GameObject EditorTilePrefab;
         public int TilesPerSide;
 
@@ -68,14 +67,8 @@ namespace AsteroidBelt
 
                 if (!Input.GetMouseButton(0))
                 {
-                    if (!DropValid)
-                    {
-                        Destroy(CurrentPart);
-                    }
-
+                    Destroy(CurrentPart);
                     CurrentPart = null;
-
-                    DropValid = false;
                 }
             }
         }

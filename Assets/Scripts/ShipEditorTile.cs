@@ -47,7 +47,6 @@ namespace AsteroidBelt
             Direction = ShipComponent.Direction.Up;
 
             Part = ShipEditor.Instance.CurrentPart;
-            ShipEditor.Instance.DropValid = true;
             ShipEditor.Instance.CurrentPart = null;
 
             Part.GetComponent<RectTransform>().position = transform.position;
