@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &111590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 495944}
+  - 114: {fileID: 11437014}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &495944
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 562.756226, y: 246.446075, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11437014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23914b358a2c024f84219593cc7a690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefab: {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
+  shipComponentPrefabs:
+  - {fileID: 120158, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
+  - {fileID: 132378, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
+  - {fileID: 116784, guid: 7c7d3a00add00a94d8911bdba4ac5ed9, type: 2}
+  - {fileID: 187968, guid: c8a9873bee330a143a6759ed5a4a0171, type: 2}
+  - {fileID: 187448, guid: cb6389d9fbdac32489d7c548c2809bcc, type: 2}
+  shipPrefab: {fileID: 136252, guid: 9bab485663198ed43a1b61aa97cc66d7, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 111590}
+  m_IsPrefabParent: 1

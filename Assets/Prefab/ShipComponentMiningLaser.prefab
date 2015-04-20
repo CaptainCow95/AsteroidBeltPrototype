@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c1194386cb0724e9b7232e9ea24772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
-  mass: 1
-  parentShip: {fileID: 0}
+  ComponentDirection: 0
+  Mass: 1
+  ParentShip: {fileID: 0}
   castfromLocation: {x: 0, y: .400000006}
   cooldown: 1
   emptyObject: {fileID: 186410, guid: 6fc52c472392a874ea9fe83e43ee07af, type: 2}

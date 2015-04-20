@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8fc12f7e0731a408b8a6151f3aefc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ComponentType: 1
   Part: {fileID: 132378, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
 --- !u!222 &22215596
 CanvasRenderer:

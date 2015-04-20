@@ -54,9 +54,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46da6aa25661eb948899efedbcacc986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
-  mass: 1
-  parentShip: {fileID: 0}
+  ComponentDirection: 0
+  Mass: 1
+  ParentShip: {fileID: 0}
 --- !u!212 &21296906
 SpriteRenderer:
   m_ObjectHideFlags: 1

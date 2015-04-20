@@ -7,7 +7,7 @@ namespace AsteroidBelt
         // Found at http://devmag.org.za/2012/07/12/50-tips-for-working-with-unity-best-practices/
         public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
-            private static T instance;
+            protected static T instance;
 
             public static T Instance
             {

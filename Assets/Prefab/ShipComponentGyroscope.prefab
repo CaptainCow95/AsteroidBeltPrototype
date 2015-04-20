@@ -54,9 +54,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95bdc8c76e8bdfa48836fc641325da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
-  mass: 1
-  parentShip: {fileID: 0}
+  ComponentDirection: 0
+  Mass: 1
+  ParentShip: {fileID: 0}
   torque: 1000
 --- !u!212 &21208882
 SpriteRenderer:

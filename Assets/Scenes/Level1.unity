@@ -87,6 +87,48 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &106392584
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 562.756226
+      objectReference: {fileID: 0}
+    - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 246.446075
+      objectReference: {fileID: 0}
+    - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &527733420
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +141,6 @@ GameObject:
   - 92: {fileID: 527733423}
   - 124: {fileID: 527733422}
   - 81: {fileID: 527733421}
-  - 114: {fileID: 527733427}
   - 114: {fileID: 527733426}
   m_Layer: 0
   m_Name: Main Camera
@@ -196,22 +237,3 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 1}
   - {x: 1, y: 2}
---- !u!114 &527733427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 527733420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23914b358a2c024f84219593cc7a690, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asteroidPrefab: {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
-  shipComponentPrefabs:
-  - {fileID: 120158, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
-  - {fileID: 132378, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
-  - {fileID: 116784, guid: 7c7d3a00add00a94d8911bdba4ac5ed9, type: 2}
-  - {fileID: 187968, guid: c8a9873bee330a143a6759ed5a4a0171, type: 2}
-  - {fileID: 187448, guid: cb6389d9fbdac32489d7c548c2809bcc, type: 2}
-  shipPrefab: {fileID: 136252, guid: 9bab485663198ed43a1b61aa97cc66d7, type: 2}

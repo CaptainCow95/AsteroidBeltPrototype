@@ -54,9 +54,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b710338f732c7d4dbe52c5af5b84a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
-  mass: 1
-  parentShip: {fileID: 0}
+  ComponentDirection: 0
+  Mass: 1
+  ParentShip: {fileID: 0}
   capacity: 0
   usedSpace: 0
 --- !u!212 &21288140
