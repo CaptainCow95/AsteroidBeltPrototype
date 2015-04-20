@@ -1,27 +1,30 @@
 ﻿using AsteroidBelt.Assets.Scripts;
 using UnityEngine;
 
-public class ShipEditor : Singleton<ShipEditor>
+namespace AsteroidBelt
 {
-	public GameObject CurrentPart;
-	public bool DropValid;
-
-	private void Update()
+	public class ShipEditor : Singleton<ShipEditor>
 	{
-		if (CurrentPart != null)
+		public GameObject CurrentPart;
+		public bool DropValid;
+
+		private void Update()
 		{
-			CurrentPart.transform.position = Input.mousePosition;
-
-			if (!Input.GetMouseButton(0))
+			if (CurrentPart != null)
 			{
-				if (!DropValid)
+				CurrentPart.GetComponent<RectTransform>().position = Input.mousePosition;
+
+				if (!Input.GetMouseButton(0))
 				{
-					Destroy(CurrentPart);
+					if (!DropValid)
+					{
+						//Destroy(CurrentPart);
+					}
+
+					CurrentPart = null;
+
+					DropValid = false;
 				}
-
-				CurrentPart = null;
-
-				DropValid = false;
 			}
 		}
 	}

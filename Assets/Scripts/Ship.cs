@@ -14,7 +14,7 @@ namespace AsteroidBelt
         public void addShipComponent(ShipComponent shipComponent)
         {
             shipComponents.Add(shipComponent);
-            gameObject.GetComponent<Rigidbody2D>().mass += shipComponent.mass;
+            gameObject.GetComponent<Rigidbody2D>().mass += shipComponent.Mass;
         }
 
         private void Start()
@@ -36,7 +36,7 @@ namespace AsteroidBelt
                 float maxTorque = 0;
                 foreach (var item in shipComponents)
                 {
-                    shipMass += item.mass;
+                    shipMass += item.Mass;
 
                     if (item is Thruster)
                     {
@@ -102,25 +102,25 @@ namespace AsteroidBelt
                             continue;
                         }
 
-                        if (item.direction == ShipComponent.Direction.Up && velocity.y < -0.00001f)
+                        if (item.ComponentDirection == ShipComponent.Direction.Up && velocity.y < -0.00001f)
                         {
                             float force = Mathf.Min(((Thruster)item).GetThrust(new Vector2(0, 1)).y * Time.deltaTime, forceToFire.y);
                             forceToFire.y -= force;
                             rigidBody.AddRelativeForce(new Vector2(0, force));
                         }
-                        else if (item.direction == ShipComponent.Direction.Down && velocity.y > 0.00001f)
+                        else if (item.ComponentDirection == ShipComponent.Direction.Down && velocity.y > 0.00001f)
                         {
                             float force = Mathf.Min(((Thruster)item).GetThrust(new Vector2(0, -1)).y * Time.deltaTime, forceToFire.y);
                             forceToFire.y -= force;
                             rigidBody.AddRelativeForce(new Vector2(0, force));
                         }
-                        else if (item.direction == ShipComponent.Direction.Left && velocity.x > 0.00001f)
+                        else if (item.ComponentDirection == ShipComponent.Direction.Left && velocity.x > 0.00001f)
                         {
                             float force = Mathf.Min(((Thruster)item).GetThrust(new Vector2(-1, 0)).x * Time.deltaTime, forceToFire.x);
                             forceToFire.x -= force;
                             rigidBody.AddRelativeForce(new Vector2(force, 0));
                         }
-                        else if (item.direction == ShipComponent.Direction.Right && velocity.x < -0.00001f)
+                        else if (item.ComponentDirection == ShipComponent.Direction.Right && velocity.x < -0.00001f)
                         {
                             float force = Mathf.Min(((Thruster)item).GetThrust(new Vector2(1, 0)).x * Time.deltaTime, forceToFire.x);
                             forceToFire.x -= force;

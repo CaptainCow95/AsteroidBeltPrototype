@@ -4,28 +4,28 @@ namespace AsteroidBelt.ShipComponents
 {
 	public class ShipComponent : MonoBehaviour
 	{
-		public Direction direction;
-		public float mass;
-		public GameObject parentShip;
+		public Direction ComponentDirection;
+		public float Mass;
+		public GameObject ParentShip;
 
 		public enum Direction
 		{
-			Up,
-			Left,
-			Down,
-			Right
+			Up = 0,
+			Right = 1,
+			Down = 2,
+			Left = 3
 		}
 
 		protected virtual void Start()
 		{
-			if (parentShip == null)
+			if (ParentShip == null)
 			{
 				return;
 			}
 
-			gameObject.transform.SetParent(parentShip.transform, false);
+			gameObject.transform.SetParent(ParentShip.transform, false);
 
-			switch (direction)
+			switch (ComponentDirection)
 			{
 				case Direction.Up:
 					gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);

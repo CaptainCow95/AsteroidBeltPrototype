@@ -3,24 +3,27 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShipEditorScrollRect : ScrollRect
+namespace AsteroidBelt
 {
-	public override void OnBeginDrag(PointerEventData eventData)
+	public class ShipEditorScrollRect : ScrollRect
 	{
-		foreach (var component in GetComponentsInChildren<Component>().Except(GetComponents<Component>()))
+		public override void OnBeginDrag(PointerEventData eventData)
 		{
-			if (component is IBeginDragHandler)
+			foreach (var component in GetComponentsInChildren<Component>().Except(GetComponents<Component>()))
 			{
-				((IBeginDragHandler)component).OnBeginDrag(eventData);
+				if (component is IBeginDragHandler)
+				{
+					((IBeginDragHandler)component).OnBeginDrag(eventData);
+				}
 			}
 		}
-	}
 
-	public override void OnDrag(PointerEventData eventData)
-	{
-	}
+		public override void OnDrag(PointerEventData eventData)
+		{
+		}
 
-	public override void OnEndDrag(PointerEventData eventData)
-	{
+		public override void OnEndDrag(PointerEventData eventData)
+		{
+		}
 	}
 }

@@ -1,54 +1,33 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ShipEditorPart : MonoBehaviour, IBeginDragHandler
+namespace AsteroidBelt
 {
-	public GameObject Part;
-
-	public void OnBeginDrag(PointerEventData eventData)
+	public class ShipEditorPart : MonoBehaviour, IBeginDragHandler
 	{
-		bool onObject = true;
+		public GameObject Part;
 
-		var rect = GetComponent<RectTransform>().rect;
-		rect.x += transform.position.x;
-		rect.y += transform.position.y;
-		if (eventData.position.x < rect.x ||
-			eventData.position.x > rect.xMax ||
-			eventData.position.y < rect.y ||
-			eventData.position.y > rect.yMax)
+		public void OnBeginDrag(PointerEventData eventData)
 		{
-			onObject = false;
-		}
+			bool onObject = true;
 
-		if (onObject)
-		{
-			ShipEditor.Instance.CurrentPart = Instantiate(Part);
-			ShipEditor.Instance.CurrentPart.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-			ShipEditor.Instance.CurrentPart.AddComponent<RectTransform>();
-
-			// Disable drag events
-			SetLayerRecursively(ShipEditor.Instance.CurrentPart, 2);
-		}
-	}
-
-	private static void SetLayerRecursively(GameObject obj, int layer)
-	{
-		if (obj == null)
-		{
-			return;
-		}
-
-		obj.layer = layer;
-
-		foreach (Transform child in obj.GetComponentsInChildren<Transform>(true).Except(obj.GetComponents<Transform>()))
-		{
-			if (child == null)
+			var rect = GetComponent<RectTransform>().rect;
+			rect.x += transform.position.x;
+			rect.y += transform.position.y;
+			if (eventData.position.x < rect.x ||
+				eventData.position.x > rect.xMax ||
+				eventData.position.y < rect.y ||
+				eventData.position.y > rect.yMax)
 			{
-				continue;
+				onObject = false;
 			}
 
-			SetLayerRecursively(child.gameObject, layer);
+			if (onObject)
+			{
+				ShipEditor.Instance.CurrentPart = Instantiate(Part);
+				ShipEditor.Instance.CurrentPart.GetComponent<RectTransform>()
+					.SetParent(GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>());
+			}
 		}
 	}
 }

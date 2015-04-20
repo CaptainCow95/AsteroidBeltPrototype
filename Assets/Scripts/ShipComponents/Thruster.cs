@@ -9,13 +9,13 @@ namespace AsteroidBelt.ShipComponents
 
         public Vector2 GetThrust(Vector2 dir)
         {
-            if ((direction == Direction.Down && dir.y < 0) || (direction == Direction.Up && dir.y > 0))
+            if ((ComponentDirection == Direction.Down && dir.y < 0) || (ComponentDirection == Direction.Up && dir.y > 0))
             {
                 animator.SetBool("ThrusterActive", true);
                 return new Vector2(0, dir.y * force);
             }
 
-            if ((direction == Direction.Left && dir.x < 0) || (direction == Direction.Right && dir.x > 0))
+            if ((ComponentDirection == Direction.Left && dir.x < 0) || (ComponentDirection == Direction.Right && dir.x > 0))
             {
                 animator.SetBool("ThrusterActive", true);
                 return new Vector2(dir.x * force, 0);

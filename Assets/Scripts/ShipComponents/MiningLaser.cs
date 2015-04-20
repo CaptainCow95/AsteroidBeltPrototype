@@ -45,7 +45,7 @@ namespace AsteroidBelt.ShipComponents
 
 		protected override void Start()
 		{
-			if (parentShip == null)
+			if (ParentShip == null)
 			{
 				return;
 			}
@@ -58,7 +58,7 @@ namespace AsteroidBelt.ShipComponents
 
 		protected override void Update()
 		{
-			if (parentShip == null)
+			if (ParentShip == null)
 			{
 				return;
 			}
