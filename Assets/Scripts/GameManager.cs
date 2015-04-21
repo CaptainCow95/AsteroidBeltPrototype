@@ -81,13 +81,14 @@ namespace AsteroidBelt
 
         private void Update()
         {
-            var obj = GameObject.FindGameObjectWithTag("PlayerShip");
-            if (obj != null)
+            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            var playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
+            if (playerShip != null)
             {
-                var pos = transform.position;
-                pos.x = obj.transform.position.x;
-                pos.y = obj.transform.position.y;
-                transform.position = pos;
+                var pos = mainCamera.transform.position;
+                pos.x = playerShip.transform.position.x;
+                pos.y = playerShip.transform.position.y;
+                mainCamera.transform.position = pos;
             }
 
             if (Input.GetAxis("Mouse ScrollWheel") < 0)
