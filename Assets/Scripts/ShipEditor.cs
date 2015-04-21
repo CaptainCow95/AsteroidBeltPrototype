@@ -233,7 +233,7 @@ namespace AsteroidBelt
                     if (possibleConnection == ShipComponents.ShipComponent.PossibleConnection.MustBeEmpty)
                     {
                         searchTable[currX, currY] = SearchResult.Invalid;
-                        errorLog.GetComponent<Text>().text += "Error: a component is bordered on a side that needs to be open \n";
+                        errorLog.GetComponent<Text>().text += "Error: a component is bordered on a side that needs to be open\n";
                     }
 
                     //if we can connect to the other component and we have not already touched it in our search, search it next
