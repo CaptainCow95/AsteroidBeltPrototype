@@ -20,9 +20,9 @@ namespace AsteroidBelt.ShipComponents
 
         public enum PossibleConnection
         {
-            No = 0,
-            Yes = 1,
-            MustBeEmpty = 2
+            No = 0,//will not make a connection
+            Yes = 1,//can make a connection
+            MustBeEmpty = 2//will fail if any object is placed next to it
         }
 
         protected virtual void Start()
