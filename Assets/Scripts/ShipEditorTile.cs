@@ -11,6 +11,11 @@ namespace AsteroidBelt
 
 		public void OnBeginDrag(PointerEventData eventData)
 		{
+			if (eventData.button != PointerEventData.InputButton.Left)
+			{
+				return;
+			}
+
 			if (Part == null)
 			{
 				return;
@@ -64,7 +69,7 @@ namespace AsteroidBelt
 			var rect = GetComponent<RectTransform>().rect;
 			rect.x += transform.position.x;
 			rect.y += transform.position.y;
-			if (Input.GetMouseButtonDown(1) &&
+			if (Input.GetKeyDown(KeyCode.R) &&
 				Input.mousePosition.x > rect.x &&
 				Input.mousePosition.x < rect.xMax &&
 				Input.mousePosition.y > rect.y &&

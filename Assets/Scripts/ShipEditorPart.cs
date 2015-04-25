@@ -10,6 +10,11 @@ namespace AsteroidBelt
 
 		public void OnBeginDrag(PointerEventData eventData)
 		{
+			if (eventData.button != PointerEventData.InputButton.Left)
+			{
+				return;
+			}
+
 			bool onObject = true;
 
 			var rect = GetComponent<RectTransform>().rect;
