@@ -44,6 +44,11 @@ namespace AsteroidBelt
 
 		public void OnDrop(PointerEventData eventData)
 		{
+			if (ShipEditor.Instance.CurrentPart == null)
+			{
+				return;
+			}
+
 			if (Part != null)
 			{
 				Destroy(Part);
