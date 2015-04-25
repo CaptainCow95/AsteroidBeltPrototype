@@ -6,7 +6,6 @@ namespace AsteroidBelt
 {
 	public class ShipEditorTile : MonoBehaviour, IBeginDragHandler, IDropHandler
 	{
-		public ShipComponent.Direction Direction;
 		public GameObject Part;
 
 		public void OnBeginDrag(PointerEventData eventData)
@@ -55,8 +54,6 @@ namespace AsteroidBelt
 				Part = null;
 			}
 
-			Direction = ShipComponent.Direction.Up;
-
 			Part = ShipEditor.Instance.CurrentPart;
 			Part.GetComponent<RectTransform>().SetParent(ShipEditor.Instance.EditorTileParent.GetComponent<RectTransform>());
 			ShipEditor.Instance.CurrentPart = null;
@@ -80,10 +77,10 @@ namespace AsteroidBelt
 				Input.mousePosition.y > rect.y &&
 				Input.mousePosition.y < rect.yMax)
 			{
-				Direction++;
-				if ((int)Direction > 3)
+				Part.GetComponent<ShipEditorPart>().Direction++;
+				if ((int)Part.GetComponent<ShipEditorPart>().Direction > 3)
 				{
-					Direction = 0;
+					Part.GetComponent<ShipEditorPart>().Direction = 0;
 				}
 
 				UpdateDirection();
@@ -92,7 +89,7 @@ namespace AsteroidBelt
 
 		private void UpdateDirection()
 		{
-			switch (Direction)
+			switch (Part.GetComponent<ShipEditorPart>().Direction)
 			{
 				case ShipComponent.Direction.Up:
 					Part.GetComponent<RectTransform>().rotation = Quaternion.identity;

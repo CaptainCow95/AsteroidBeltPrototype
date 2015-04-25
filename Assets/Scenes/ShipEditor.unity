@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentType: 0
+  Direction: 0
   Part: {fileID: 103010, guid: 63de82503c700e447ba29c7ca991b5ca, type: 2}
 --- !u!1 &152901573
 GameObject:
@@ -282,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentType: 3
+  Direction: 0
   Part: {fileID: 158332, guid: d8f7d6b61014b8141af029ed718f94cc, type: 2}
 --- !u!1 &247657275
 GameObject:
@@ -380,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentType: 2
+  Direction: 0
   Part: {fileID: 183192, guid: 6ed3e72a56a6e2a44aa632a1ecb48f05, type: 2}
 --- !u!1 &257287469
 GameObject:
@@ -544,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentType: 1
+  Direction: 0
   Part: {fileID: 143566, guid: 86d2dbbf3a8771d42aeb319cd873ddd5, type: 2}
 --- !u!1 &280731988
 GameObject:
@@ -777,6 +781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentType: 4
+  Direction: 0
   Part: {fileID: 143474, guid: ab9c80a8a80626241a362885288fff85, type: 2}
 --- !u!1 &826055455
 GameObject:

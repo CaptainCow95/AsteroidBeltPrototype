@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using AsteroidBelt.ShipComponents;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace AsteroidBelt
 {
 	public class ShipEditorPart : MonoBehaviour, IBeginDragHandler
 	{
-		public ShipComponents.ShipComponentType ComponentType;
+		public ShipComponentType ComponentType;
+		public ShipComponent.Direction Direction;
 		public GameObject Part;
 
 		public void OnBeginDrag(PointerEventData eventData)

@@ -1,4 +1,5 @@
 ﻿using AsteroidBelt.Assets.Scripts;
+using AsteroidBelt.ShipComponents;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,9 +22,9 @@ namespace AsteroidBelt
 			Invalid = 2
 		}
 
-		public List<ShipComponents.ShipPart> GetShip()
+		public List<ShipPart> GetShip()
 		{
-			List<ShipComponents.ShipPart> shipPartList = new List<ShipComponents.ShipPart>();
+			List<ShipPart> shipPartList = new List<ShipPart>();
 			GameObject[] editorTiles = GameObject.FindGameObjectsWithTag("EditorTile");
 			foreach (GameObject editorTile in editorTiles)
 			{
@@ -37,10 +38,10 @@ namespace AsteroidBelt
 					position.x = position.x / recWidth;
 					position.y = position.y / recWidth;
 
-					ShipComponents.ShipComponentType shipComponentType = shipPartComponent.ComponentType;
-					ShipComponents.ShipComponent.Direction direction = tileComponent.Direction;
+					ShipComponentType shipComponentType = shipPartComponent.ComponentType;
+					ShipComponent.Direction direction = shipPartComponent.Direction;
 
-					shipPartList.Add(new ShipComponents.ShipPart(shipComponentType, position, direction));
+					shipPartList.Add(new ShipPart(shipComponentType, position, direction));
 				}
 			}
 
@@ -69,9 +70,9 @@ namespace AsteroidBelt
 			int firstX = 0;
 			int firstY = 0;
 
-			for (int x = 0; x < TilesPerSide; ++x)//get total number of parts
+			for (int y = 0; y < TilesPerSide; ++y) // get total number of parts
 			{
-				for (int y = 0; y < TilesPerSide; ++y)
+				for (int x = 0; x < TilesPerSide; ++x)
 				{
 					if (tiles[x, y].GetComponent<ShipEditorTile>().Part != null)
 					{
@@ -91,9 +92,9 @@ namespace AsteroidBelt
 				SearchResult[,] searchResults = ValidationSearch(firstX, firstY, new SearchResult[TilesPerSide, TilesPerSide]);
 
 				int totalTouchedComponents = 0;
-				for (int x = 0; x < TilesPerSide; ++x)//get total number of parts
+				for (int y = 0; y < TilesPerSide; ++y) // get total number of parts
 				{
-					for (int y = 0; y < TilesPerSide; ++y)
+					for (int x = 0; x < TilesPerSide; ++x)
 					{
 						if (searchResults[x, y] != SearchResult.Untouched)
 						{
@@ -139,11 +140,11 @@ namespace AsteroidBelt
 			}
 		}
 
-		private ShipComponents.ShipComponent tileToShipComponent(ShipEditorTile tile)
-		{
-			if (tile.Part == null) return null;
-			return tile.Part.GetComponent<ShipEditorPart>().Part.GetComponent<ShipComponents.ShipComponent>();
-		}
+		//private ShipComponent tileToShipComponent(ShipEditorTile tile)
+		//{
+		//	if (tile.Part == null) return null;
+		//	return tile.Part.GetComponent<ShipEditorPart>().Part.GetComponent<ShipComponent>();
+		//}
 
 		private void Update()
 		{
@@ -162,19 +163,19 @@ namespace AsteroidBelt
 		private SearchResult[,] ValidationSearch(int currX, int currY, SearchResult[,] searchTable)
 		{
 			ShipEditorTile currentTile = tiles[currX, currY].GetComponent<ShipEditorTile>();
-			ShipComponents.ShipComponent currentComponent = tileToShipComponent(currentTile);
+			ShipEditorPart currentComponent = currentTile.Part.GetComponent<ShipEditorPart>();
 			searchTable[currX, currY] = SearchResult.Touched;
 			int nextX = currX;
 			int nextY = currY;
 
 			for (int i = 0; i < 4; ++i)
 			{
-				int connDir = ((int)currentTile.Direction + (4 - i)) % 4;
-				ShipComponents.ShipComponent.PossibleConnection possibleConnection = currentComponent.possibleConnections[connDir];
+				int connDir = ((int)currentComponent.Direction + (4 - i)) % 4;
+				ShipComponent.PossibleConnection possibleConnection = currentComponent.Part.GetComponent<ShipComponent>().possibleConnections[connDir];
 				ShipEditorTile connectedTile;
-				switch ((ShipComponents.ShipComponent.Direction)i)
+				switch ((ShipComponent.Direction)i)
 				{
-					case ShipComponents.ShipComponent.Direction.Left:
+					case ShipComponent.Direction.Left:
 						if (currX - 1 >= 0)
 						{
 							nextX = currX - 1;
@@ -186,7 +187,7 @@ namespace AsteroidBelt
 						}
 						break;
 
-					case ShipComponents.ShipComponent.Direction.Right:
+					case ShipComponent.Direction.Right:
 						if (currX + 1 < TilesPerSide)
 						{
 							nextX = currX + 1;
@@ -198,7 +199,7 @@ namespace AsteroidBelt
 						}
 						break;
 
-					case ShipComponents.ShipComponent.Direction.Up:
+					case ShipComponent.Direction.Up:
 						if (currY + 1 < TilesPerSide)
 						{
 							nextX = currX;
@@ -210,7 +211,7 @@ namespace AsteroidBelt
 						}
 						break;
 
-					case ShipComponents.ShipComponent.Direction.Down:
+					case ShipComponent.Direction.Down:
 						if (currY - 1 >= 0)
 						{
 							nextX = currX;
@@ -224,19 +225,19 @@ namespace AsteroidBelt
 				}
 
 				connectedTile = tiles[nextX, nextY].GetComponent<ShipEditorTile>();
-				ShipComponents.ShipComponent connectedShipComponent = tileToShipComponent(connectedTile);
-				if (connectedShipComponent != null)//if there is a component on the other side
+				if (connectedTile.Part != null) // if there is a component on the other side
 				{
-					int othersConnDir = ((int)connectedTile.Direction + (4 - i) + 2) % 4;
-					ShipComponents.ShipComponent.PossibleConnection othersPossibleConnection = connectedShipComponent.possibleConnections[othersConnDir];//gettting out of bounds here
-					if (possibleConnection == ShipComponents.ShipComponent.PossibleConnection.MustBeEmpty)
+					ShipEditorPart connectedShipComponent = connectedTile.Part.GetComponent<ShipEditorPart>();
+					int othersConnDir = ((int)connectedShipComponent.Direction + (4 - i) + 2) % 4;
+					ShipComponent.PossibleConnection othersPossibleConnection = connectedShipComponent.Part.GetComponent<ShipComponent>().possibleConnections[othersConnDir]; // gettting out of bounds here
+					if (possibleConnection == ShipComponent.PossibleConnection.MustBeEmpty)
 					{
 						searchTable[currX, currY] = SearchResult.Invalid;
 						errorLog.GetComponent<Text>().text += "Error: a component is bordered on a side that needs to be open\n";
 					}
 
-					//if we can connect to the other component and we have not already touched it in our search, search it next
-					if (othersPossibleConnection == ShipComponents.ShipComponent.PossibleConnection.Yes && possibleConnection == ShipComponents.ShipComponent.PossibleConnection.Yes && searchTable[nextX, nextY] == SearchResult.Untouched)
+					// if we can connect to the other component and we have not already touched it in our search, search it next
+					if (othersPossibleConnection == ShipComponent.PossibleConnection.Yes && possibleConnection == ShipComponent.PossibleConnection.Yes && searchTable[nextX, nextY] == SearchResult.Untouched)
 					{
 						searchTable = ValidationSearch(nextX, nextY, searchTable);
 					}
