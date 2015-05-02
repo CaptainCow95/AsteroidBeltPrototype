@@ -9,6 +9,7 @@ namespace AsteroidBelt
     {
         public bool playerControlled;
         public List<ShipComponent> shipComponents;
+        private Inventory inventory;
         private Rigidbody2D rigidBody;
 
         public void addShipComponent(ShipComponent shipComponent)
