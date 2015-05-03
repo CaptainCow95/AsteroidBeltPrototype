@@ -12,6 +12,7 @@ GameObject:
   - 33: {fileID: 3314414}
   - 114: {fileID: 11440530}
   - 60: {fileID: 6052608}
+  - 114: {fileID: 11461284}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -91,10 +92,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2faf0dad9c1c3d4ea15bfcb7d4a4d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   mineralRating: 300
-  numberOfVertices: 16
   newUV: []
+  numberOfVertices: 16
+  radiusPerMineral: 0
+--- !u!114 &11461284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b568a63bb16b22f48be77580e0ba608e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Iron
+  size: 1
+  type: 0
+  value: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

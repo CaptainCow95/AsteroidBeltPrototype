@@ -4,19 +4,21 @@ using UnityEngine;
 
 namespace AsteroidBelt
 {
-    internal class Inventory
+    public class Inventory
     {
-        public float _capacity;
+        public float Capacity;
         private List<InventorySlot> inventory;
 
         public Inventory(float capacity)
         {
-            _capacity = capacity;
+            Capacity = capacity;
+            inventory = new List<InventorySlot>();
         }
 
-        public float Capacity
+        public Inventory()
         {
-            get { return _capacity; }
+            Capacity = 0;
+            inventory = new List<InventorySlot>();
         }
 
         private float UsedCapacity
@@ -27,6 +29,11 @@ namespace AsteroidBelt
             }
         }
 
+        public void AddCapacity(float capacity)
+        {
+            Capacity += capacity;
+        }
+
         /// <summary>
         ///
         /// </summary>
@@ -35,9 +42,9 @@ namespace AsteroidBelt
         /// <returns>The number of items that successfully were added to the inventory.</returns>
         public int PutItem(InventoryItem item, int amount)
         {
-            if (item.size * amount > _capacity - UsedCapacity)
+            if (item.size * amount > Capacity - UsedCapacity)
             {
-                amount = (int)((_capacity - UsedCapacity) / item.size);//add as many as can fit
+                amount = (int)((Capacity - UsedCapacity) / item.size);//add as many as can fit
                 if (amount == 0)
                 {
                     return 0;
@@ -49,6 +56,7 @@ namespace AsteroidBelt
             if (slots.Count > 0)
             {
                 slots[0].add(amount);
+                Debug.Log("Adding " + amount + " " + slots[0].Item.name);
                 if (slots.Count > 1)
                 {
                     Debug.LogError("The inventory had more than one instance of the added item " + item.name);
@@ -60,6 +68,18 @@ namespace AsteroidBelt
             }
 
             return amount;
+        }
+
+        public string ToString()
+        {
+            string text = "";
+
+            foreach (var slot in inventory)
+            {
+                text += slot.Item.name + ": " + slot.Amount + "\n";
+            }
+
+            return text;
         }
     }
 }

@@ -1,15 +1,18 @@
 ﻿using AsteroidBelt.ShipComponents;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace AsteroidBelt
 {
     public class Ship : MonoBehaviour
     {
+        public Inventory inventory;
         public bool playerControlled;
         public List<ShipComponent> shipComponents;
-        private Inventory inventory;
+
+        private float capacity;
         private Rigidbody2D rigidBody;
 
         public void addShipComponent(ShipComponent shipComponent)
@@ -18,8 +21,15 @@ namespace AsteroidBelt
             gameObject.GetComponent<Rigidbody2D>().mass += shipComponent.Mass;
         }
 
+        private void InitInventory()
+        {
+            inventory = new Inventory();
+            inventory.Capacity = shipComponents.Where(e => e.GetType().Equals(typeof(Cargo))).Sum(e => ((Cargo)e).capacity);
+        }
+
         private void Start()
         {
+            InitInventory();
             rigidBody = gameObject.GetComponent<Rigidbody2D>();
             rigidBody.gravityScale = 0;
 

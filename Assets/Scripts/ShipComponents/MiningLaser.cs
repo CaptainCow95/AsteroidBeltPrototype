@@ -35,6 +35,12 @@ namespace AsteroidBelt.ShipComponents
                     {
                         float amountForCargo = Mathf.Min(asteroid.mineralRating, yield);
                         asteroid.mineralRating -= yield;
+
+                        Ore ore = asteroid.GetComponent<Ore>();
+                        if (ore != null)
+                        {
+                            ParentShip.GetComponent<Ship>().inventory.PutItem(ore, (int)amountForCargo);
+                        }
                     }
                 }
                 Laser laserComponent = laser.GetComponent<Laser>();
