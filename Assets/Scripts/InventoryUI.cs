@@ -16,7 +16,7 @@ namespace AsteroidBelt
             playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
             text = gameObject.GetComponentInChildren<Text>();
             inventory = playerShip.GetComponent<Ship>().inventory;
-            text.text = "Inventory: \n" + inventory.ToString();
+            text.text = "Inventory: \n" + inventory;
         }
     }
 }

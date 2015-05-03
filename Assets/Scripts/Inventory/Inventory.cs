@@ -70,7 +70,7 @@ namespace AsteroidBelt
             return amount;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             string text = "";
 

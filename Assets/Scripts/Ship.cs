@@ -60,7 +60,7 @@ namespace AsteroidBelt
                     }
                     else if (item is MiningLaser)
                     {
-                        if (Input.GetMouseButtonDown(1))
+                        if (Input.GetMouseButton(1))
                         {
                             ((MiningLaser)item).Fire();
                         }

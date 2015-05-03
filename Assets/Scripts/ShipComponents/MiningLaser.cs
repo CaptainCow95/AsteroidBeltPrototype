@@ -31,10 +31,10 @@ namespace AsteroidBelt.ShipComponents
                     distance = Vector2.Distance(castfrom.transform.position, hit.point);
 
                     Asteroid asteroid = objectHit.GetComponent<Asteroid>();
-                    if (asteroid != null)
+                    if (asteroid != null && distance < range)
                     {
-                        float amountForCargo = Mathf.Min(asteroid.mineralRating, yield);
-                        asteroid.mineralRating -= yield;
+                        float amountForCargo = Mathf.Min(asteroid.MineralRating, yield);
+                        asteroid.MineralRating -= yield;
 
                         Ore ore = asteroid.GetComponent<Ore>();
                         if (ore != null)

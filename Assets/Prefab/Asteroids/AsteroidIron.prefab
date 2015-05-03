@@ -14,7 +14,7 @@ GameObject:
   - 60: {fileID: 6052608}
   - 114: {fileID: 11461284}
   m_Layer: 0
-  m_Name: Asteroid
+  m_Name: AsteroidIron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2faf0dad9c1c3d4ea15bfcb7d4a4d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mineralRating: 300
   newUV: []
   numberOfVertices: 16
   radiusPerMineral: 0

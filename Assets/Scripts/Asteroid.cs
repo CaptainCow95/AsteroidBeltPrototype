@@ -6,12 +6,31 @@ namespace AsteroidBelt
 {
     public class Asteroid : MonoBehaviour
     {
-        public float mineralRating;
         public Vector2[] newUV;
         public int numberOfVertices;
         public float radiusPerMineral;
+        private float mineralRating;
         private int[] newTriangles;
         private Vector3[] newVertices;
+
+        public float MineralRating
+        {
+            get
+            {
+                return mineralRating;
+            }
+
+            set
+            {
+                mineralRating = value;
+                if (mineralRating <= 0)
+                {
+                    Destroy(gameObject);
+                }
+                float scale = mineralRating * radiusPerMineral;
+                gameObject.transform.localScale = new Vector3(scale, scale, 1);
+            }
+        }
 
         private void CreateMesh()
         {
@@ -73,17 +92,6 @@ namespace AsteroidBelt
         private void Start()
         {
             CreateMesh();
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-            if (mineralRating <= 0)
-            {
-                Destroy(gameObject);
-            }
-            float scale = Mathf.Ceil(2f * mineralRating * radiusPerMineral) / 2f;
-            gameObject.transform.localScale = new Vector3(scale, scale, 1);
         }
     }
 }

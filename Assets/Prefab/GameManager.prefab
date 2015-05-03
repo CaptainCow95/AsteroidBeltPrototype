@@ -39,7 +39,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23914b358a2c024f84219593cc7a690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroidOptions:
+  - {fileID: 138122, guid: e1e3dd64841e8504bb1d2b8ac8dc309e, type: 2}
+  - {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
   asteroidPrefab: {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
+  maxZoomOut: 40
   shipComponentPrefabs:
   - {fileID: 120158, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
   - {fileID: 132378, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
