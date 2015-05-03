@@ -9,6 +9,7 @@ namespace AsteroidBelt.ShipComponents
         public float Mass;
         public GameObject ParentShip;
         public PossibleConnection[] possibleConnections;
+        public int value;
 
         public enum Direction
         {

@@ -1,62 +1,61 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &136252
+--- !u!1 &150574
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 473248}
-  - 114: {fileID: 11407666}
-  - 50: {fileID: 5040092}
+  - 4: {fileID: 486306}
+  - 114: {fileID: 11428490}
+  - 50: {fileID: 5057496}
   m_Layer: 0
-  m_Name: Ship
+  m_Name: Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &473248
+--- !u!4 &486306
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136252}
+  m_GameObject: {fileID: 150574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5040092
+--- !u!50 &5057496
 Rigidbody2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136252}
-  m_Mass: 9.99999975e-05
+  m_GameObject: {fileID: 150574}
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: .0500000007
   m_GravityScale: 0
   m_FixedAngle: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!114 &11407666
+--- !u!114 &11428490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136252}
+  m_GameObject: {fileID: 150574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e982fc98bc548254ba51abc76cbdd997, type: 3}
+  m_Script: {fileID: 11500000, guid: aeb894d87817666478c2c1e0cef0e5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControlled: 0
-  shipComponents: []
+  stationComponents: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -66,5 +65,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 136252}
+  m_RootGameObject: {fileID: 150574}
   m_IsPrefabParent: 1

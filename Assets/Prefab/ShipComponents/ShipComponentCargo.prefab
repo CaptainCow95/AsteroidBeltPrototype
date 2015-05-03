@@ -59,6 +59,7 @@ MonoBehaviour:
   Mass: 1
   ParentShip: {fileID: 0}
   possibleConnections: 01000000010000000100000001000000
+  value: 5
   capacity: 100
 --- !u!212 &21288140
 SpriteRenderer:

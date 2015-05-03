@@ -7,6 +7,7 @@ namespace AsteroidBelt
         public string name;
         public float size;
         public ItemType type;
+        public int value;
 
         public enum ItemType
         {

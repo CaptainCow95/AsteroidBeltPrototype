@@ -34,6 +34,16 @@ namespace AsteroidBelt
             Capacity += capacity;
         }
 
+        public void ClearInventory()
+        {
+            inventory.Clear();
+        }
+
+        public IEnumerable<KeyValuePair<InventoryItem, int>> GetInventory()
+        {
+            return inventory.Select(e => new KeyValuePair<InventoryItem, int>(e.Item, e.Amount));
+        }
+
         /// <summary>
         ///
         /// </summary>
@@ -56,7 +66,6 @@ namespace AsteroidBelt
             if (slots.Count > 0)
             {
                 slots[0].add(amount);
-                Debug.Log("Adding " + amount + " " + slots[0].Item.name);
                 if (slots.Count > 1)
                 {
                     Debug.LogError("The inventory had more than one instance of the added item " + item.name);

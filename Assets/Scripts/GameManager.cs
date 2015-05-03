@@ -13,6 +13,9 @@ namespace AsteroidBelt
         public float maxZoomOut;
         public GameObject[] shipComponentPrefabs;
         public GameObject shipPrefab;
+        public GameObject[] stationComponentPrefabs;
+        public GameObject stationPrefab;
+        public int totalCredits;
         private List<ShipPart> ShipToLoad;
 
         public void CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
@@ -40,7 +43,7 @@ namespace AsteroidBelt
                 ShipComponent comp = newShipComponent.GetComponent<ShipComponent>();
                 comp.ParentShip = shipObject;
                 comp.ComponentDirection = componentDirections[i];
-                ship.addShipComponent(comp);
+                ship.AddShipComponent(comp);
             }
         }
 
@@ -57,6 +60,20 @@ namespace AsteroidBelt
                 shipComponents[i] = shipParts[i].ShipComponent;
             }
             CreateShip(position, componentPositions, componentDirections, shipComponents, playerControlled);
+        }
+
+        public void CreateStation(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, ShipComponentType[] stationComponents)
+        {
+            GameObject stationObject = (GameObject)Instantiate(stationPrefab, position, Quaternion.identity);
+            Station station = stationObject.GetComponent<Station>();
+            for (int i = 0; i < stationComponents.Length; ++i)
+            {
+                GameObject newStationComponent = (GameObject)Instantiate(stationComponentPrefabs[(int)stationComponents[i]], componentPositions[i], Quaternion.identity);
+                ShipComponent component = newStationComponent.GetComponent<ShipComponent>();
+                component.ParentShip = stationObject;
+                component.ComponentDirection = componentDirections[i];
+                station.AddStationComponent(component);
+            }
         }
 
         public void generateRandomAsteroids(List<int> asteroidRarities, int numberOfAsteroids, float range, Vector2 origin)

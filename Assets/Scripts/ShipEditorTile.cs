@@ -1,112 +1,124 @@
 ﻿using AsteroidBelt.ShipComponents;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace AsteroidBelt
 {
-	public class ShipEditorTile : MonoBehaviour, IBeginDragHandler, IDropHandler
-	{
-		public GameObject Part;
+    public class ShipEditorTile : MonoBehaviour, IBeginDragHandler, IDropHandler
+    {
+        public GameObject Part;
 
-		public void OnBeginDrag(PointerEventData eventData)
-		{
-			if (eventData.button != PointerEventData.InputButton.Left)
-			{
-				return;
-			}
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            if (eventData.button != PointerEventData.InputButton.Left)
+            {
+                return;
+            }
 
-			if (Part == null)
-			{
-				return;
-			}
+            if (Part == null)
+            {
+                return;
+            }
 
-			bool onObject = true;
+            bool onObject = true;
 
-			var rect = GetComponent<RectTransform>().rect;
-			rect.x += transform.position.x;
-			rect.y += transform.position.y;
-			if (eventData.position.x < rect.x ||
-				eventData.position.x > rect.xMax ||
-				eventData.position.y < rect.y ||
-				eventData.position.y > rect.yMax)
-			{
-				onObject = false;
-			}
+            var rect = GetComponent<RectTransform>().rect;
+            rect.x += transform.position.x;
+            rect.y += transform.position.y;
+            if (eventData.position.x < rect.x ||
+                eventData.position.x > rect.xMax ||
+                eventData.position.y < rect.y ||
+                eventData.position.y > rect.yMax)
+            {
+                onObject = false;
+            }
 
-			if (onObject)
-			{
-				ShipEditor.Instance.CurrentPart = Part;
-				ShipEditor.Instance.CurrentPart.GetComponent<RectTransform>().SetParent(GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>());
-				Part = null;
-			}
-		}
+            if (onObject)
+            {
+                GameManager.Instance.totalCredits += Part.GetComponent<ShipEditorPart>().Part.GetComponent<ShipComponent>().value;
+                ShipEditor.Instance.CurrentPart = Part;
+                ShipEditor.Instance.CurrentPart.GetComponent<RectTransform>().SetParent(GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>());
+                Part = null;
+            }
+        }
 
-		public void OnDrop(PointerEventData eventData)
-		{
-			if (ShipEditor.Instance.CurrentPart == null)
-			{
-				return;
-			}
+        public void OnDrop(PointerEventData eventData)
+        {
+            if (ShipEditor.Instance.CurrentPart == null)
+            {
+                return;
+            }
 
-			if (Part != null)
-			{
-				Destroy(Part);
-				Part = null;
-			}
+            if (Part != null)
+            {
+                GameManager.Instance.totalCredits += Part.GetComponent<ShipEditorPart>().Part.GetComponent<ShipComponent>().value;
+                Destroy(Part);
+                Part = null;
+            }
 
-			Part = ShipEditor.Instance.CurrentPart;
-			Part.GetComponent<RectTransform>().SetParent(ShipEditor.Instance.EditorTileParent.GetComponent<RectTransform>());
-			ShipEditor.Instance.CurrentPart = null;
+            int value = ShipEditor.Instance.CurrentPart.GetComponent<ShipEditorPart>().Part.GetComponent<ShipComponent>().value;
+            if (value > GameManager.Instance.totalCredits)
+            {
+                ShipEditor.Instance.errorLog.GetComponent<Text>().text += "Not enough credits, this part takes " + value + " credits.\n";
+                return;
+            }
 
-			Part.GetComponent<RectTransform>().position = transform.position;
-		}
+            GameManager.Instance.totalCredits -= value;
+            ShipEditor.Instance.errorLog.GetComponent<Text>().text += "You now have " + GameManager.Instance.totalCredits + " credits.\n";
+            Part = ShipEditor.Instance.CurrentPart;
+            Part.GetComponent<RectTransform>().SetParent(ShipEditor.Instance.EditorTileParent.GetComponent<RectTransform>());
+            ShipEditor.Instance.CurrentPart = null;
 
-		private void Update()
-		{
-			if (Part == null)
-			{
-				return;
-			}
+            Part.GetComponent<RectTransform>().position = transform.position;
+        }
 
-			var rect = GetComponent<RectTransform>().rect;
-			rect.x += transform.position.x;
-			rect.y += transform.position.y;
-			if (Input.GetKeyDown(KeyCode.R) &&
-				Input.mousePosition.x > rect.x &&
-				Input.mousePosition.x < rect.xMax &&
-				Input.mousePosition.y > rect.y &&
-				Input.mousePosition.y < rect.yMax)
-			{
-				Part.GetComponent<ShipEditorPart>().Direction++;
-				if ((int)Part.GetComponent<ShipEditorPart>().Direction > 3)
-				{
-					Part.GetComponent<ShipEditorPart>().Direction = 0;
-				}
+        private void Update()
+        {
+            if (Part == null)
+            {
+                return;
+            }
 
-				UpdateDirection();
-			}
-		}
+            var rect = GetComponent<RectTransform>().rect;
+            rect.x += transform.position.x;
+            rect.y += transform.position.y;
+            if (Input.GetKeyDown(KeyCode.R) &&
+                Input.mousePosition.x > rect.x &&
+                Input.mousePosition.x < rect.xMax &&
+                Input.mousePosition.y > rect.y &&
+                Input.mousePosition.y < rect.yMax)
+            {
+                Part.GetComponent<ShipEditorPart>().Direction++;
+                if ((int)Part.GetComponent<ShipEditorPart>().Direction > 3)
+                {
+                    Part.GetComponent<ShipEditorPart>().Direction = 0;
+                }
 
-		private void UpdateDirection()
-		{
-			switch (Part.GetComponent<ShipEditorPart>().Direction)
-			{
-				case ShipComponent.Direction.Up:
-					Part.GetComponent<RectTransform>().rotation = Quaternion.identity;
-					break;
+                UpdateDirection();
+            }
+        }
 
-				case ShipComponent.Direction.Right:
-					Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 270);
-					break;
+        private void UpdateDirection()
+        {
+            switch (Part.GetComponent<ShipEditorPart>().Direction)
+            {
+                case ShipComponent.Direction.Up:
+                    Part.GetComponent<RectTransform>().rotation = Quaternion.identity;
+                    break;
 
-				case ShipComponent.Direction.Down:
-					Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 180);
-					break;
+                case ShipComponent.Direction.Right:
+                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 270);
+                    break;
 
-				case ShipComponent.Direction.Left:
-					Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 90);
-					break;
-			}
-		}
-	}
+                case ShipComponent.Direction.Down:
+                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 180);
+                    break;
+
+                case ShipComponent.Direction.Left:
+                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 90);
+                    break;
+            }
+        }
+    }
 }

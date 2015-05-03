@@ -15,7 +15,7 @@ namespace AsteroidBelt
         private float capacity;
         private Rigidbody2D rigidBody;
 
-        public void addShipComponent(ShipComponent shipComponent)
+        public void AddShipComponent(ShipComponent shipComponent)
         {
             shipComponents.Add(shipComponent);
             gameObject.GetComponent<Rigidbody2D>().mass += shipComponent.Mass;
@@ -23,15 +23,16 @@ namespace AsteroidBelt
 
         private void InitInventory()
         {
-            inventory = new Inventory();
-            inventory.Capacity = shipComponents.Where(e => e.GetType().Equals(typeof(Cargo))).Sum(e => ((Cargo)e).capacity);
+            inventory = new Inventory
+            {
+                Capacity = shipComponents.OfType<Cargo>().Sum(e => e.capacity)
+            };
         }
 
         private void Start()
         {
             InitInventory();
             rigidBody = gameObject.GetComponent<Rigidbody2D>();
-            rigidBody.gravityScale = 0;
 
             if (playerControlled)
             {

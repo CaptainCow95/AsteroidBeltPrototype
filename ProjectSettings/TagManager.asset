@@ -8,6 +8,8 @@ TagManager:
   - EditorTile
   - Canvas
   - EditorTilePanel
+  - StationText
+  - StationInteraction
   layers:
   - Default
   - TransparentFX

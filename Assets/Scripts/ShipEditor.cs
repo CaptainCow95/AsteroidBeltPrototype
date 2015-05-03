@@ -67,7 +67,6 @@ namespace AsteroidBelt
 
         public bool ValidateConnections()
         {
-            errorLog.GetComponent<Text>().text = "";
             int totalNumberOfParts = 0;
             bool pass = true;
             int firstX = 0;
@@ -87,11 +86,11 @@ namespace AsteroidBelt
             }
             if (totalNumberOfParts == 1)
             {
-                errorLog.GetComponent<Text>().text = "Your ship has " + totalNumberOfParts + " part.\n";
+                errorLog.GetComponent<Text>().text += "Your ship has " + totalNumberOfParts + " part.\n";
             }
             else if (totalNumberOfParts > 1)
             {
-                errorLog.GetComponent<Text>().text = "Your ship has " + totalNumberOfParts + " parts.\n";
+                errorLog.GetComponent<Text>().text += "Your ship has " + totalNumberOfParts + " parts.\n";
                 SearchResult[,] searchResults = ValidationSearch(firstX, firstY, new SearchResult[TilesPerSide, TilesPerSide]);
 
                 int totalTouchedComponents = 0;
@@ -111,13 +110,13 @@ namespace AsteroidBelt
                 }
                 if (totalTouchedComponents != totalNumberOfParts)
                 {
-                    errorLog.GetComponent<Text>().text += "Only " + totalTouchedComponents + " parts are connected";
+                    errorLog.GetComponent<Text>().text += "Only " + totalTouchedComponents + " parts are connected\n";
                     pass = false;
                 }
             }
             else
             {
-                errorLog.GetComponent<Text>().text += "Your ship has no parts!";
+                errorLog.GetComponent<Text>().text += "Your ship has no parts!\n";
                 pass = false;
             }
 
@@ -141,13 +140,9 @@ namespace AsteroidBelt
                     tiles[x, y] = newEditorTile;
                 }
             }
-        }
 
-        //private ShipComponent tileToShipComponent(ShipEditorTile tile)
-        //{
-        //	if (tile.Part == null) return null;
-        //	return tile.Part.GetComponent<ShipEditorPart>().Part.GetComponent<ShipComponent>();
-        //}
+            errorLog.GetComponent<Text>().text += "You have " + GameManager.instance.totalCredits + " credits to spend.\n";
+        }
 
         private void Update()
         {
@@ -157,6 +152,7 @@ namespace AsteroidBelt
 
                 if (!Input.GetMouseButton(0))
                 {
+                    errorLog.GetComponent<Text>().text += "You have " + GameManager.instance.totalCredits + " credits to spend.\n";
                     Destroy(CurrentPart);
                     CurrentPart = null;
                 }

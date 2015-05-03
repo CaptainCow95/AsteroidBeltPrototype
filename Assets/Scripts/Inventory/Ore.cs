@@ -2,8 +2,6 @@
 {
     public class Ore : InventoryItem
     {
-        public float value;
-
         // Use this for initialization
         private void Start()
         {
