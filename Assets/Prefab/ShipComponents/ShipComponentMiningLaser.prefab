@@ -70,7 +70,7 @@ MonoBehaviour:
   emptyObject: {fileID: 186410, guid: 6fc52c472392a874ea9fe83e43ee07af, type: 2}
   laser: {fileID: 120128, guid: c6f8bb86e3472ca4392591936ba1f33f, type: 2}
   range: 10
-  yield: 100
+  yield: 5
 --- !u!212 &21238060
 SpriteRenderer:
   m_ObjectHideFlags: 1
