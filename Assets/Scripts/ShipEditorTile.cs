@@ -65,7 +65,7 @@ namespace AsteroidBelt
             }
 
             GameManager.Instance.totalCredits -= value;
-            ShipEditor.Instance.errorLog.GetComponent<Text>().text += "You now have " + GameManager.Instance.totalCredits + " credits.\n";
+            ShipEditor.Instance.errorLog.GetComponent<Text>().text += "You have " + GameManager.Instance.totalCredits + " credits to spend.\n";
             Part = ShipEditor.Instance.CurrentPart;
             Part.GetComponent<RectTransform>().SetParent(ShipEditor.Instance.EditorTileParent.GetComponent<RectTransform>());
             ShipEditor.Instance.CurrentPart = null;
