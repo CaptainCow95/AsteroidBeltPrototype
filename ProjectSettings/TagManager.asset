@@ -7,6 +7,7 @@ TagManager:
   - PlayerShip
   - EditorTile
   - Canvas
+  - EditorTilePanel
   layers:
   - Default
   - TransparentFX

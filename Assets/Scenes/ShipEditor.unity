@@ -940,7 +940,7 @@ GameObject:
   - 114: {fileID: 1286827964}
   m_Layer: 5
   m_Name: Panel
-  m_TagString: Untagged
+  m_TagString: EditorTilePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1687,7 +1687,7 @@ MonoBehaviour:
   EditorTileParent: {fileID: 1286827962}
   EditorTilePrefab: {fileID: 127928, guid: 275df6750bbdb3b4782ba2aedfeed030, type: 2}
   errorLog: {fileID: 257287469}
-  TilesPerSide: 5
+  TilesPerSide: 10
 --- !u!1 &2092969325
 GameObject:
   m_ObjectHideFlags: 0
