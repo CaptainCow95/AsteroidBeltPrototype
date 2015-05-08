@@ -6,6 +6,7 @@
         Thruster = 1,
         Gyroscope = 2,
         Cargo = 3,
-        MiningLaser = 4
+        MiningLaser = 4,
+        Generator = 5
     }
 }

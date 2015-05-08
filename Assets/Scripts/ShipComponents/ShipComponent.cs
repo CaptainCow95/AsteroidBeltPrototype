@@ -9,6 +9,8 @@ namespace AsteroidBelt.ShipComponents
         public float Mass;
         public GameObject ParentShip;
         public PossibleConnection[] possibleConnections;
+        public float powerCapacity = 0;
+        public float powerSupply = 0;
         public int value;
 
         public enum Direction
@@ -57,6 +59,11 @@ namespace AsteroidBelt.ShipComponents
 
         protected virtual void Update()
         {
+            Ship ship = ParentShip.GetComponent<Ship>();
+            if (ship != null)
+            {
+                ship.addPower(powerSupply * Time.deltaTime);
+            }
         }
     }
 }

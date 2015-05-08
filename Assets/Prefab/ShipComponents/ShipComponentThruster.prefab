@@ -84,6 +84,8 @@ MonoBehaviour:
   Mass: 1
   ParentShip: {fileID: 0}
   possibleConnections: 01000000000000000200000000000000
+  powerCapacity: 0
+  powerSupply: -5
   value: 10
   force: 1000
 --- !u!212 &21298636

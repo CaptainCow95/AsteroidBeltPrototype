@@ -11,14 +11,46 @@ namespace AsteroidBelt
         public Inventory inventory;
         public bool playerControlled;
         public List<ShipComponent> shipComponents;
-
         private float capacity;
+        private float currentPower;
+        private float powerCapacity;
+
         private Rigidbody2D rigidBody;
+
+        public float CurrentPower
+        {
+            get { return currentPower; }
+        }
+
+        public float PowerCapacity
+        {
+            get { return powerCapacity; }
+        }
+
+        public bool addPower(float power)
+        {
+            if (power > 0)
+            {
+                currentPower = Math.Min(powerCapacity, currentPower + power);
+            }
+            return false;
+        }
 
         public void AddShipComponent(ShipComponent shipComponent)
         {
             shipComponents.Add(shipComponent);
             gameObject.GetComponent<Rigidbody2D>().mass += shipComponent.Mass;
+            powerCapacity += shipComponent.powerCapacity;
+        }
+
+        public bool drawPower(float power)
+        {
+            if (power > 0 && currentPower - power > 0)
+            {
+                currentPower -= power;
+                return true;
+            }
+            return false;
         }
 
         private void InitInventory()

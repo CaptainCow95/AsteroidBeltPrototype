@@ -708,6 +708,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11437014, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
+      propertyPath: shipComponentPrefabs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 495944, guid: 72c8bba7f4815cf49bf558fece99cd9f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 562.756226

@@ -18,34 +18,37 @@ namespace AsteroidBelt.ShipComponents
         {
             if (canFire)
             {
-                canFire = false;
-                timeLeft = cooldown;
-                float distance = range;
-
-                RaycastHit2D hit = Physics2D.Raycast(castfrom.transform.position, gameObject.transform.rotation * new Vector3(0, 1));
-                if (hit.collider != null)
+                if (ParentShip.GetComponent<Ship>().drawPower(-powerSupply))
                 {
-                    if (hit.collider == null)
-                        Debug.Log("collider is null");
-                    GameObject objectHit = hit.collider.gameObject;
-                    distance = Vector2.Distance(castfrom.transform.position, hit.point);
+                    canFire = false;
+                    timeLeft = cooldown;
+                    float distance = range;
 
-                    Asteroid asteroid = objectHit.GetComponent<Asteroid>();
-                    if (asteroid != null && distance < range)
+                    RaycastHit2D hit = Physics2D.Raycast(castfrom.transform.position, gameObject.transform.rotation * new Vector3(0, 1));
+                    if (hit.collider != null)
                     {
-                        float amountForCargo = Mathf.Min(asteroid.MineralRating, yield);
-                        asteroid.MineralRating -= yield;
+                        if (hit.collider == null)
+                            Debug.Log("collider is null");
+                        GameObject objectHit = hit.collider.gameObject;
+                        distance = Vector2.Distance(castfrom.transform.position, hit.point);
 
-                        Ore ore = asteroid.GetComponent<Ore>();
-                        if (ore != null)
+                        Asteroid asteroid = objectHit.GetComponent<Asteroid>();
+                        if (asteroid != null && distance < range)
                         {
-                            ParentShip.GetComponent<Ship>().inventory.PutItem(ore, (int)amountForCargo);
+                            float amountForCargo = Mathf.Min(asteroid.MineralRating, yield);
+                            asteroid.MineralRating -= yield;
+
+                            Ore ore = asteroid.GetComponent<Ore>();
+                            if (ore != null)
+                            {
+                                ParentShip.GetComponent<Ship>().inventory.PutItem(ore, (int)amountForCargo);
+                            }
                         }
                     }
+                    Laser laserComponent = laser.GetComponent<Laser>();
+                    laserComponent.laserRange = Mathf.Min(range, distance);
+                    GameObject newLaser = Instantiate(laser, castfrom.transform.position, gameObject.transform.rotation) as GameObject;
                 }
-                Laser laserComponent = laser.GetComponent<Laser>();
-                laserComponent.laserRange = Mathf.Min(range, distance);
-                GameObject newLaser = Instantiate(laser, castfrom.transform.position, gameObject.transform.rotation) as GameObject;
             }
         }
 
@@ -64,6 +67,7 @@ namespace AsteroidBelt.ShipComponents
 
         protected override void Update()
         {
+            base.Update();
             if (ParentShip == null)
             {
                 return;
