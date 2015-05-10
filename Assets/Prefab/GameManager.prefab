@@ -53,7 +53,7 @@ MonoBehaviour:
   - {fileID: 175270, guid: 753edae8973f32e45a29aabbe7086279, type: 2}
   shipPrefab: {fileID: 136252, guid: 9bab485663198ed43a1b61aa97cc66d7, type: 2}
   stationComponentPrefabs:
-  - {fileID: 120158, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
+  - {fileID: 193722, guid: c55d381fa04bda942843e84a9bf6aaea, type: 2}
   stationPrefab: {fileID: 150574, guid: c583bf2df5803cf4791adb3cd086690e, type: 2}
   totalCredits: 75
 --- !u!1001 &100100000

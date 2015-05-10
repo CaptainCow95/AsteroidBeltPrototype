@@ -1,4 +1,4 @@
-﻿using AsteroidBelt.ShipComponents;
+﻿using AsteroidBelt.StationComponents;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,11 +8,11 @@ namespace AsteroidBelt
     public class Station : MonoBehaviour
     {
         public static bool HandlingInteraction = false;
-        public List<ShipComponent> stationComponents;
+        public List<StationComponent> stationComponents;
         private Rigidbody2D rigidBody;
         private GameObject stationInteraction;
 
-        public void AddStationComponent(ShipComponent component)
+        public void AddStationComponent(StationComponent component)
         {
             stationComponents.Add(component);
         }

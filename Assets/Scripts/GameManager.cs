@@ -1,5 +1,5 @@
-﻿using AsteroidBelt.Assets.Scripts;
-using AsteroidBelt.ShipComponents;
+﻿using AsteroidBelt.ShipComponents;
+using AsteroidBelt.StationComponents;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -69,14 +69,14 @@ namespace AsteroidBelt
             for (int i = 0; i < stationComponents.Length; ++i)
             {
                 GameObject newStationComponent = (GameObject)Instantiate(stationComponentPrefabs[(int)stationComponents[i]], componentPositions[i], Quaternion.identity);
-                ShipComponent component = newStationComponent.GetComponent<ShipComponent>();
-                component.ParentShip = stationObject;
+                StationComponent component = newStationComponent.GetComponent<StationComponent>();
+                component.ParentStation = stationObject;
                 component.ComponentDirection = componentDirections[i];
                 station.AddStationComponent(component);
             }
         }
 
-        public void generateRandomAsteroids(List<int> asteroidRarities, int numberOfAsteroids, float range, Vector2 origin)
+        public void GenerateRandomAsteroids(List<int> asteroidRarities, int numberOfAsteroids, float range, Vector2 origin)
         {
             List<GameObject> weightedAsteroidList = new List<GameObject>();
             for (int i = 0; i < asteroidRarities.Count(); ++i)

@@ -1,5 +1,4 @@
-﻿using AsteroidBelt.Assets.Scripts;
-using AsteroidBelt.ShipComponents;
+﻿using AsteroidBelt.ShipComponents;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
