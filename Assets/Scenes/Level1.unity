@@ -657,7 +657,7 @@ GameObject:
   - 114: {fileID: 1243571641}
   - 114: {fileID: 1243571643}
   m_Layer: 5
-  m_Name: PowerSupply
+  m_Name: Power Capacity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,12 +700,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Power Supply:
+  m_Text: 'Total Capacity:
 
     +#'
 --- !u!222 &1243571642
@@ -722,7 +722,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1243571639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 315bee87dcf97d24e8a99773a26fe68f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a00d4cbddee42d4382e5d937ff47127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1301915501
@@ -946,7 +946,7 @@ GameObject:
   - 114: {fileID: 1517226367}
   - 114: {fileID: 1517226366}
   m_Layer: 5
-  m_Name: PowerCapacity
+  m_Name: Current Capacity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1005,7 +1005,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Power Capacity:
+  m_Text: 'Current Power:
 
     #'
 --- !u!222 &1517226368
