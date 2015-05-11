@@ -67,6 +67,7 @@ MonoBehaviour:
   possibleConnections: 02000000000000000100000000000000
   powerCapacity: 0
   powerSupply: -25
+  UIShipPart: {fileID: 143474, guid: ab9c80a8a80626241a362885288fff85, type: 2}
   value: 15
   castfromLocation: {x: 0, y: .400000006}
   cooldown: 1

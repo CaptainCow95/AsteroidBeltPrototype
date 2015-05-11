@@ -59,6 +59,9 @@ MonoBehaviour:
   Mass: 1
   ParentShip: {fileID: 0}
   possibleConnections: 01000000010000000100000001000000
+  powerCapacity: 0
+  powerSupply: 0
+  UIShipPart: {fileID: 103010, guid: 63de82503c700e447ba29c7ca991b5ca, type: 2}
   value: 1
 --- !u!212 &21296906
 SpriteRenderer:

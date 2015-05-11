@@ -55,12 +55,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentDirection: 0
-  componentType: 0
+  componentType: 5
   Mass: 1
   ParentShip: {fileID: 0}
   possibleConnections: 01000000010000000100000001000000
   powerCapacity: 10
   powerSupply: 10
+  UIShipPart: {fileID: 131798, guid: e7309f4d6fad0df45a04f8b67e70e625, type: 2}
   value: 5
 --- !u!212 &21235472
 SpriteRenderer:

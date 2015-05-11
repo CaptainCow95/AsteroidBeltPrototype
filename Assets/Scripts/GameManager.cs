@@ -13,10 +13,10 @@ namespace AsteroidBelt
         public float maxZoomOut;
         public GameObject[] shipComponentPrefabs;
         public GameObject shipPrefab;
+        public List<ShipPart> ShipToLoad;
         public GameObject[] stationComponentPrefabs;
         public GameObject stationPrefab;
         public int totalCredits;
-        private List<ShipPart> ShipToLoad;
 
         public void CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
         {

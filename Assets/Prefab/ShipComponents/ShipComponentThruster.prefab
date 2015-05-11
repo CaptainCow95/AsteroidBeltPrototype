@@ -86,6 +86,7 @@ MonoBehaviour:
   possibleConnections: 01000000000000000200000000000000
   powerCapacity: 0
   powerSupply: -5
+  UIShipPart: {fileID: 143566, guid: 86d2dbbf3a8771d42aeb319cd873ddd5, type: 2}
   value: 10
   force: 1000
 --- !u!212 &21298636

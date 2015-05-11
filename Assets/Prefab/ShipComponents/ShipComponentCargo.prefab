@@ -55,10 +55,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentDirection: 0
-  componentType: 0
+  componentType: 3
   Mass: 1
   ParentShip: {fileID: 0}
   possibleConnections: 01000000010000000100000001000000
+  powerCapacity: 0
+  powerSupply: 0
+  UIShipPart: {fileID: 158332, guid: d8f7d6b61014b8141af029ed718f94cc, type: 2}
   value: 5
   capacity: 100
 --- !u!212 &21288140

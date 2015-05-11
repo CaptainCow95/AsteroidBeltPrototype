@@ -59,6 +59,9 @@ MonoBehaviour:
   Mass: 1
   ParentShip: {fileID: 0}
   possibleConnections: 01000000010000000100000001000000
+  powerCapacity: 0
+  powerSupply: 0
+  UIShipPart: {fileID: 183192, guid: 6ed3e72a56a6e2a44aa632a1ecb48f05, type: 2}
   value: 10
   torque: 1000
 --- !u!212 &21208882
