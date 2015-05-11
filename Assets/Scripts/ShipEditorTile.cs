@@ -73,6 +73,28 @@ namespace AsteroidBelt
             Part.GetComponent<RectTransform>().position = transform.position;
         }
 
+        public void UpdateDirection()
+        {
+            switch (Part.GetComponent<ShipEditorPart>().Direction)
+            {
+                case ShipComponent.Direction.Up:
+                    Part.GetComponent<RectTransform>().rotation = Quaternion.identity;
+                    break;
+
+                case ShipComponent.Direction.Right:
+                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 270);
+                    break;
+
+                case ShipComponent.Direction.Down:
+                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 180);
+                    break;
+
+                case ShipComponent.Direction.Left:
+                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 90);
+                    break;
+            }
+        }
+
         private void Update()
         {
             if (Part == null)
@@ -96,28 +118,6 @@ namespace AsteroidBelt
                 }
 
                 UpdateDirection();
-            }
-        }
-
-        private void UpdateDirection()
-        {
-            switch (Part.GetComponent<ShipEditorPart>().Direction)
-            {
-                case ShipComponent.Direction.Up:
-                    Part.GetComponent<RectTransform>().rotation = Quaternion.identity;
-                    break;
-
-                case ShipComponent.Direction.Right:
-                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 270);
-                    break;
-
-                case ShipComponent.Direction.Down:
-                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 180);
-                    break;
-
-                case ShipComponent.Direction.Left:
-                    Part.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 90);
-                    break;
             }
         }
     }

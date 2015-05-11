@@ -1,4 +1,5 @@
 ﻿using AsteroidBelt.ShipComponents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -62,6 +63,34 @@ namespace AsteroidBelt
             {
                 GameManager.Instance.SetShipToLoad(GetShip());
                 Application.LoadLevel(1);
+            }
+        }
+
+        public void LoadShip(List<ShipPart> shipToLoad)
+        {
+            foreach (var item in shipToLoad)
+            {
+                //get the correct tile
+                //round parts position to ints
+                int x = (int)Math.Round(item.Location.x);
+                int y = (int)Math.Round(item.Location.y);
+
+                //use position as index adjusted so that the center tile is 0,0
+                x = x + TilesPerSide / 2;
+                y = y + TilesPerSide / 2;
+                GameObject tile = tiles[x, y];
+
+                //Instantiate a the correct ship part at the tiles postion
+                GameObject shipPartToInstantiate = GameManager.Instance.shipComponentPrefabs[(int)item.ShipComponent].GetComponent<ShipComponent>().UIShipPart;
+                GameObject Part = GameObject.Instantiate(shipPartToInstantiate);
+                Part.GetComponent<RectTransform>().SetParent(EditorTileParent.GetComponent<RectTransform>());
+                Part.GetComponent<RectTransform>().position = tile.transform.position;
+
+                //set the tiles part to this part
+                ShipEditorTile editorTile = tile.GetComponent<ShipEditorTile>();
+                editorTile.Part = Part;
+                Part.GetComponent<ShipEditorPart>().Direction = item.Direction;
+                editorTile.UpdateDirection();
             }
         }
 
@@ -144,6 +173,11 @@ namespace AsteroidBelt
                     newEditorTile.tag = "EditorTile";
                     tiles[x, y] = newEditorTile;
                 }
+            }
+
+            if (GameManager.Instance.ShipToLoad != null)
+            {
+                LoadShip(GameManager.Instance.ShipToLoad);
             }
 
             errorLog.GetComponent<Text>().text += "You have " + GameManager.instance.totalCredits + " credits to spend.\n";

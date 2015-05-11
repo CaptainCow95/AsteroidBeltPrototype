@@ -1,4 +1,6 @@
 ﻿using AsteroidBelt;
+using AsteroidBelt.ShipComponents;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StationInteraction : MonoBehaviour
@@ -14,10 +16,15 @@ public class StationInteraction : MonoBehaviour
 
     public void YesPressed()
     {
+        List<ShipPart> shipParts = new List<ShipPart>();
         foreach (var item in GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<Ship>().shipComponents)
         {
-            GameManager.Instance.totalCredits += item.value;
+            shipParts.Add(new ShipPart(item.componentType, item.transform.localPosition, item.ComponentDirection));
+
+            // GameManager.Instance.totalCredits += item.value;
         }
+
+        GameManager.Instance.SetShipToLoad(shipParts);
 
         Time.timeScale = 1;
         Station.HandlingInteraction = false;
