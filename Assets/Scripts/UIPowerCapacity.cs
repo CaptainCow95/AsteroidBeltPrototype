@@ -13,7 +13,7 @@ namespace AsteroidBelt
         // Update is called once per frame
         private void Update()
         {
-            gameObject.GetComponent<Text>().text = "Power Capacity:\n" + GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<Ship>().CurrentPower.ToString("#.0");
+            gameObject.GetComponent<Text>().text = "Total Capacity:\n" + GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<Ship>().PowerCapacity.ToString("#.0");
         }
     }
 }

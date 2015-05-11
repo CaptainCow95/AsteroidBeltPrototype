@@ -1,5 +1,6 @@
 ﻿using AsteroidBelt.ShipComponents;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,6 +49,11 @@ namespace AsteroidBelt
             }
 
             return shipPartList;
+        }
+
+        public int GetShipValue()
+        {
+            return GetShip().Sum(e => GameManager.Instance.shipComponentPrefabs[(int)e.ShipComponent].GetComponent<ShipComponent>().value);
         }
 
         public void LevelButton()

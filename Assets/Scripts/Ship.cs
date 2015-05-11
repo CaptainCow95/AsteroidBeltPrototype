@@ -100,7 +100,8 @@ namespace AsteroidBelt
                     }
                 }
 
-                Vector2 vec = Input.mousePosition - Camera.main.WorldToScreenPoint(gameObject.transform.position);
+                GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                Vector2 vec = Input.mousePosition - Camera.main.WorldToScreenPoint(mainCamera.transform.position);
                 float angle = Mathf.Atan2(-vec.x, vec.y) * Mathf.Rad2Deg;
                 angle = rigidBody.rotation % 360 - angle;
                 angle += angle < -180 ? 360 : angle > 180 ? -360 : 0;

@@ -136,8 +136,10 @@ namespace AsteroidBelt
             if (playerShip != null)
             {
                 var pos = mainCamera.transform.position;
-                pos.x = playerShip.transform.position.x;
-                pos.y = playerShip.transform.position.y;
+                Vector3 centerOfMass = playerShip.transform.rotation * (Vector3)playerShip.GetComponent<Rigidbody2D>().centerOfMass;
+
+                pos.x = centerOfMass.x + playerShip.transform.position.x;
+                pos.y = centerOfMass.y + playerShip.transform.position.y;
                 mainCamera.transform.position = pos;
             }
 

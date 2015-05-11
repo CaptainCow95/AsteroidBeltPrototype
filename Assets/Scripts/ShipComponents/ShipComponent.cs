@@ -11,6 +11,7 @@ namespace AsteroidBelt.ShipComponents
         public PossibleConnection[] possibleConnections;
         public float powerCapacity = 0;
         public float powerSupply = 0;
+
         public int value;
 
         public enum Direction

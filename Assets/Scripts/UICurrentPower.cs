@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace AsteroidBelt
 {
-    public class UIPowerSupply : MonoBehaviour
+    public class UICurrentPower : MonoBehaviour
     {
         // Use this for initialization
         private void Start()
@@ -13,7 +13,7 @@ namespace AsteroidBelt
         // Update is called once per frame
         private void Update()
         {
-            gameObject.GetComponent<Text>().text = "Power Supply:\n" + GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<Ship>().PowerCapacity.ToString("#.0");
+            gameObject.GetComponent<Text>().text = "Current Power:\n" + GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<Ship>().CurrentPower.ToString("#.0");
         }
     }
 }

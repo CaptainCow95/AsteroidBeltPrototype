@@ -7,6 +7,7 @@
         Gyroscope = 2,
         Cargo = 3,
         MiningLaser = 4,
-        Generator = 5
+        Generator = 5,
+        Battery = 6
     }
 }
