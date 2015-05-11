@@ -17,6 +17,7 @@ namespace AsteroidBelt
         public GameObject[] stationComponentPrefabs;
         public GameObject stationPrefab;
         public int totalCredits;
+        private List<GameObject> persistingObjects = new List<GameObject>();
 
         public void CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
         {
@@ -25,6 +26,8 @@ namespace AsteroidBelt
             asteroid.radiusPerMineral = radiusPerMineral;
             asteroid.numberOfVertices = numberOfVertices;
             asteroid.MineralRating = mineralRating;
+            persistingObjects.Add(asteroidObject);
+            GameObject.DontDestroyOnLoad(asteroidObject);
         }
 
         public void CreateAsteroid(Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
@@ -74,6 +77,8 @@ namespace AsteroidBelt
                 component.ComponentDirection = componentDirections[i];
                 station.AddStationComponent(component);
             }
+            GameObject.DontDestroyOnLoad(stationObject);
+            persistingObjects.Add(stationObject);
         }
 
         public void GenerateRandomAsteroids(List<int> asteroidRarities, int numberOfAsteroids, float range, Vector2 origin)
@@ -101,6 +106,18 @@ namespace AsteroidBelt
             }
         }
 
+        public void loadSameShip()
+        {
+        }
+
+        public void reset()
+        {
+            foreach (var item in persistingObjects)
+            {
+                GameObject.Destroy(item);
+            }
+        }
+
         public void SetShipToLoad(List<ShipPart> shipToLoad)
         {
             ShipToLoad = shipToLoad;
@@ -121,7 +138,20 @@ namespace AsteroidBelt
 
         private void OnLevelWasLoaded(int level)
         {
-            if (level == 0 || level == 2) return;
+            if (level == 0 || level == 2)
+            {
+                /*  foreach (var item in persistingObjects)
+                  {
+                      item.SetActive(false);
+                  }*/
+                return;
+            }
+
+            /*     foreach (var item in persistingObjects)
+                 {
+                     item.SetActive(true);
+                 }
+                 */
             if (ShipToLoad != null)
             {
                 CreateShip(new Vector2(0, 0), ShipToLoad, true);

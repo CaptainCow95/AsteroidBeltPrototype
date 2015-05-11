@@ -26,6 +26,8 @@ public class StationInteraction : MonoBehaviour
 
         GameManager.Instance.SetShipToLoad(shipParts);
 
+        gameObject.SetActive(false);
+
         Time.timeScale = 1;
         Station.HandlingInteraction = false;
         Application.LoadLevel(2);
@@ -33,6 +35,7 @@ public class StationInteraction : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false);
+        //GameObject.DontDestroyOnLoad(gameObject);
+        //gameObject.SetActive(false);
     }
 }

@@ -11,11 +11,25 @@ namespace AsteroidBelt.Level1
         public ShipComponent.Direction[] stationDirections;
         public Vector2 stationPosition;
         public Vector2[] stationPositions;
+        private static bool firstTime = true;
+
+        public void Reset()
+        {
+            firstTime = true;
+        }
 
         private void Awake()
         {
-            GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 5000, 1000, new Vector2(0f, 0f));
-            GameManager.Instance.CreateStation(stationPosition, stationPositions, stationDirections, stationComponents);
+            //GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 5000, 1000, new Vector2(0f, 0f));
+            // GameObject.DontDestroyOnLoad(gameObject);
+            if (firstTime)
+            {
+                GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 5000, 1000, new Vector2(0f, 0f));
+
+                //GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 1, 10, new Vector2(0f, 0f));
+                GameManager.Instance.CreateStation(stationPosition, stationPositions, stationDirections, stationComponents);
+                firstTime = false;
+            }
         }
     }
 }

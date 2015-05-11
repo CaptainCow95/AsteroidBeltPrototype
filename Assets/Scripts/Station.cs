@@ -21,7 +21,6 @@ namespace AsteroidBelt
         private void Awake()
         {
             rigidBody = gameObject.GetComponent<Rigidbody2D>();
-            stationInteraction = GameObject.FindGameObjectWithTag("StationInteraction");
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -44,8 +43,18 @@ namespace AsteroidBelt
                 string text = "You have docked at the station. You have earned " + earned +
                               " credits from your cargo. You now have " + GameManager.Instance.totalCredits +
                               " credits available. Would you like to modify your ship?";
+
                 stationInteraction.SetActive(true);
                 GameObject.FindGameObjectWithTag("StationText").GetComponent<Text>().text = text;
+            }
+        }
+
+        private void OnLevelWasLoaded(int level)
+        {
+            if (level == 1)
+            {
+                stationInteraction = GameObject.FindGameObjectWithTag("StationInteraction");
+                stationInteraction.SetActive(false);
             }
         }
     }
