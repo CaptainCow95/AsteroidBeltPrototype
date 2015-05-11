@@ -53,6 +53,13 @@ MonoBehaviour:
   - {fileID: 187448, guid: cb6389d9fbdac32489d7c548c2809bcc, type: 2}
   - {fileID: 175270, guid: 753edae8973f32e45a29aabbe7086279, type: 2}
   - {fileID: 198790, guid: 12f296e8d0a1c79449e32e22dac4f531, type: 2}
+  - {fileID: 107912, guid: b98a45ced9cb1da43aa0efa9302884ff, type: 2}
+  - {fileID: 118956, guid: dceeaf82788937343ad553ade15ceccf, type: 2}
+  - {fileID: 175842, guid: d4e758fefc4966d4e91f5566a25d4fca, type: 2}
+  - {fileID: 119942, guid: b6e4143ef0e2a624c8d899a81ebcb5fa, type: 2}
+  - {fileID: 119748, guid: 8bd0e0945ea928848826e6350d06fa8e, type: 2}
+  - {fileID: 120008, guid: 1c85a9eea80ae6f4da6b3c10acdb520b, type: 2}
+  - {fileID: 129190, guid: 0ad54f674a2ce4544b2c0d5377a672bd, type: 2}
   shipPrefab: {fileID: 136252, guid: 9bab485663198ed43a1b61aa97cc66d7, type: 2}
   stationComponentPrefabs:
   - {fileID: 193722, guid: c55d381fa04bda942843e84a9bf6aaea, type: 2}
