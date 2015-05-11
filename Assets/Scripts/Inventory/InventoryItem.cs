@@ -12,7 +12,8 @@ namespace AsteroidBelt
         public enum ItemType
         {
             IronOre,
-            CopperOre
+            CopperOre,
+            GoldOre
         }
 
         // Use this for initialization

@@ -40,8 +40,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidOptions:
-  - {fileID: 138122, guid: e1e3dd64841e8504bb1d2b8ac8dc309e, type: 2}
   - {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
+  - {fileID: 138122, guid: e1e3dd64841e8504bb1d2b8ac8dc309e, type: 2}
+  - {fileID: 198128, guid: 1600b7480b43ef8469041cbed4ab943c, type: 2}
   asteroidPrefab: {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
   maxZoomOut: 40
   shipComponentPrefabs:
@@ -56,7 +57,7 @@ MonoBehaviour:
   stationComponentPrefabs:
   - {fileID: 193722, guid: c55d381fa04bda942843e84a9bf6aaea, type: 2}
   stationPrefab: {fileID: 150574, guid: c583bf2df5803cf4791adb3cd086690e, type: 2}
-  totalCredits: 75
+  totalCredits: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
