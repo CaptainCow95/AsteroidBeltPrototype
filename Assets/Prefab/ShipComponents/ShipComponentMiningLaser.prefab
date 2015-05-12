@@ -186,7 +186,7 @@ MonoBehaviour:
   emptyObject: {fileID: 186410, guid: 6fc52c472392a874ea9fe83e43ee07af, type: 2}
   explosionSound: {fileID: 8300000, guid: f8c7bf149d9e6b745bf6f5818c517ea0, type: 3}
   laser: {fileID: 120128, guid: c6f8bb86e3472ca4392591936ba1f33f, type: 2}
-  ParticlesPerBeamUnit: 20
+  ParticlesPerBeamUnit: 40
   range: 10
   shootSound: {fileID: 8300000, guid: 1d7355a288c790d44bd8199f8c91bc68, type: 3}
   yield: 5

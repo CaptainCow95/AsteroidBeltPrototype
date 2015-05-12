@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace AsteroidBelt.ShipComponents
 {
@@ -24,11 +25,22 @@ namespace AsteroidBelt.ShipComponents
 
                 //particleSystem.GetComponent<ParticleSystem>().Pause();
             }
+            List<ParticleSystem> pss = new List<ParticleSystem>();
+            foreach (Transform child in transform)
+            {
+                ParticleSystem ps = child.gameObject.GetComponent<ParticleSystem>();
+                if (ps != null)
+                {
+                    pss.Add(ps);
+                }
+            }
+            foreach (var ps in pss)
+            {
+                ps.emissionRate = percentage * 100;
+            }
 
-            var ps = particleSystem.GetComponent<ParticleSystem>();
-            ps.emissionRate = percentage * 100;
             AudioSource source = GetComponent<AudioSource>();
-            source.volume = percentage;
+            source.volume = percentage / 2;
         }
 
         public Vector2 GetThrust(Vector2 dir)
