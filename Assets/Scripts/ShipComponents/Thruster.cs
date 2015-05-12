@@ -27,6 +27,8 @@ namespace AsteroidBelt.ShipComponents
 
             var ps = particleSystem.GetComponent<ParticleSystem>();
             ps.emissionRate = percentage * 100;
+            AudioSource source = GetComponent<AudioSource>();
+            source.volume = percentage;
         }
 
         public Vector2 GetThrust(Vector2 dir)
