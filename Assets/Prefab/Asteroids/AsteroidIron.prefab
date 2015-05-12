@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2faf0dad9c1c3d4ea15bfcb7d4a4d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageConstant: .100000001
   newUV: []
   numberOfVertices: 16
   particleSystemPrefab: {fileID: 187946, guid: ad9e88a32a6f9a547a422b95a69673d5, type: 2}

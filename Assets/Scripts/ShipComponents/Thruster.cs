@@ -5,7 +5,8 @@ namespace AsteroidBelt.ShipComponents
     public class Thruster : ShipComponent
     {
         public float force;
-        private Animator animator;
+
+        // private Animator animator;
 
         public void FireThruster(float forceApplied)
         {
@@ -25,7 +26,7 @@ namespace AsteroidBelt.ShipComponents
             }
 
             var ps = particleSystem.GetComponent<ParticleSystem>();
-            ps.emissionRate = percentage * 50;
+            ps.emissionRate = percentage * 100;
         }
 
         public Vector2 GetThrust(Vector2 dir)
@@ -50,8 +51,8 @@ namespace AsteroidBelt.ShipComponents
         {
             base.Start();
 
-            animator = gameObject.GetComponent<Animator>();
-            animator.SetBool("ThrusterActive", false);
+            //animator = gameObject.GetComponent<Animator>();
+            // animator.SetBool("ThrusterActive", false);
         }
     }
 }

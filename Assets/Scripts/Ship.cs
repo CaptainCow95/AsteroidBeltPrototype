@@ -8,13 +8,15 @@ namespace AsteroidBelt
 {
     public class Ship : MonoBehaviour
     {
+        public AudioClip collisionSound;
         public Inventory inventory;
         public bool playerControlled;
         public List<ShipComponent> shipComponents;
         private float capacity;
         private float currentPower;
+        private float highPitchRange = 1.25F;
+        private float lowPitchRange = .85F;
         private float powerCapacity;
-
         private Rigidbody2D rigidBody;
 
         public float CurrentPower
@@ -59,6 +61,15 @@ namespace AsteroidBelt
             {
                 Capacity = shipComponents.OfType<Cargo>().Sum(e => e.capacity)
             };
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            Rigidbody2D rb2d = GetComponent<Rigidbody2D>();
+            float damage = rb2d.velocity.magnitude * rb2d.mass;
+            AudioSource source = GetComponent<AudioSource>();
+            source.pitch = UnityEngine.Random.Range(lowPitchRange, highPitchRange);
+            source.PlayOneShot(collisionSound, Mathf.Min(damage / 100, 1f));
         }
 
         private void Start()

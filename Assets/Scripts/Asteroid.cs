@@ -6,10 +6,12 @@ namespace AsteroidBelt
 {
     public class Asteroid : MonoBehaviour
     {
+        public float damageConstant;
         public Vector2[] newUV;
         public int numberOfVertices;
         public GameObject particleSystemPrefab;
         public float radiusPerMineral;
+
         private float mineralRating;
         private int[] newTriangles;
         private Vector3[] newVertices;
@@ -24,7 +26,7 @@ namespace AsteroidBelt
             set
             {
                 mineralRating = value;
-                if (mineralRating <= 0)
+                if (mineralRating * radiusPerMineral <= .1)
                 {
                     Destroy(gameObject);
                 }
@@ -87,6 +89,24 @@ namespace AsteroidBelt
 
             newVertices = vertices.ToArray();
             newUV = newVertices.Select(e => new Vector2(e.x, e.y)).ToArray();
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            Rigidbody2D rb2d = collision.gameObject.GetComponent<Rigidbody2D>();
+
+            if (rb2d != null)
+            {
+                float damage = rb2d.velocity.magnitude * rb2d.mass * damageConstant;
+                MineralRating = mineralRating - damage;
+
+                GameObject asteroidParticles = Instantiate(particleSystemPrefab);
+
+                asteroidParticles.transform.position = collision.contacts[0].point;
+
+                asteroidParticles.transform.rotation = Quaternion.LookRotation((Vector3)collision.contacts[0].point - transform.position, new Vector3(0, 0, 1));
+                asteroidParticles.GetComponent<ParticleSystem>().Emit((int)damage * 5);
+            }
         }
 
         // Use this for initialization
