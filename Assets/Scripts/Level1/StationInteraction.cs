@@ -36,6 +36,6 @@ public class StationInteraction : MonoBehaviour
     private void Start()
     {
         //GameObject.DontDestroyOnLoad(gameObject);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

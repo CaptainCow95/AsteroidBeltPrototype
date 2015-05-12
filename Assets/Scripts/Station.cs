@@ -57,5 +57,11 @@ namespace AsteroidBelt
                 stationInteraction.SetActive(false);
             }
         }
+
+        private void Start()
+        {
+            stationInteraction = GameObject.FindGameObjectWithTag("StationInteraction");
+            stationInteraction.SetActive(false);
+        }
     }
 }
