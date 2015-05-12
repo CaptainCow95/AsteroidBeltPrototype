@@ -30,6 +30,15 @@ namespace AsteroidBelt.Level1
                 GameManager.Instance.CreateStation(stationPosition, stationPositions, stationDirections, stationComponents);
                 firstTime = false;
             }
+
+            if (GameManager.Instance.ShipToLoad == null || GameManager.Instance.ShipToLoad.Count == 0)
+            {
+                GameManager.Instance.SpawnDefaultPlayerShip();
+            }
+        }
+
+        private void start()
+        {
         }
     }
 }

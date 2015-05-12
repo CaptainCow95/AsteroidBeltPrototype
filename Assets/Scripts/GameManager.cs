@@ -14,6 +14,7 @@ namespace AsteroidBelt
         public GameObject[] shipComponentPrefabs;
         public GameObject shipPrefab;
         public List<ShipPart> ShipToLoad;
+        public List<ShipPart> ShipToLoadDefault;
         public GameObject[] stationComponentPrefabs;
         public GameObject stationPrefab;
         public int totalCredits;
@@ -111,9 +112,14 @@ namespace AsteroidBelt
             ShipToLoad = shipToLoad;
         }
 
+        public void SpawnDefaultPlayerShip()
+        {
+            CreateShip(new Vector2(0, 0), ShipToLoadDefault, true);
+        }
+
         private void Awake()
         {
-            if (instance == null)
+            if (instance == null || instance == this)
             {
                 instance = this;
                 DontDestroyOnLoad(gameObject);
@@ -141,7 +147,7 @@ namespace AsteroidBelt
                  }
                  */
 
-            if (ShipToLoad != null)
+            if (ShipToLoad != null && ShipToLoad.Count() > 0)
             {
                 CreateShip(new Vector2(0, 0), ShipToLoad, true);
                 ShipToLoad = null;

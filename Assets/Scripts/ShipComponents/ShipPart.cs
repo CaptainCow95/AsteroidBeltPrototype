@@ -2,7 +2,8 @@
 
 namespace AsteroidBelt.ShipComponents
 {
-    public struct ShipPart
+    [System.Serializable]
+    public class ShipPart
     {
         public ShipComponent.Direction Direction;
         public Vector2 Location;

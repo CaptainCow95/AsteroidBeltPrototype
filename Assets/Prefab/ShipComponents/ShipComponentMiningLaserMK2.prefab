@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11484694}
   - 212: {fileID: 21240194}
   - 60: {fileID: 6001232}
+  - 82: {fileID: 8206848}
   m_Layer: 0
   m_Name: ShipComponentMiningLaserMK2
   m_TagString: Untagged
@@ -80,6 +81,75 @@ PolygonCollider2D:
       - {x: .469999999, y: -.5}
       - {x: .469999999, y: -.200000003}
       - {x: .119999997, y: .25999999}
+--- !u!82 &8206848
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119748}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1d7355a288c790d44bd8199f8c91bc68, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11424118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,9 +184,11 @@ MonoBehaviour:
   castfromLocation: {x: 0, y: .400000006}
   cooldown: 1
   emptyObject: {fileID: 186410, guid: 6fc52c472392a874ea9fe83e43ee07af, type: 2}
+  explosionSound: {fileID: 8300000, guid: f8c7bf149d9e6b745bf6f5818c517ea0, type: 3}
   laser: {fileID: 120128, guid: c6f8bb86e3472ca4392591936ba1f33f, type: 2}
   ParticlesPerBeamUnit: 10
   range: 20
+  shootSound: {fileID: 8300000, guid: 1d7355a288c790d44bd8199f8c91bc68, type: 3}
   yield: 10
 --- !u!198 &19849080
 ParticleSystem:
