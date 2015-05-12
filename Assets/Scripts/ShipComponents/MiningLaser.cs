@@ -45,9 +45,14 @@ namespace AsteroidBelt.ShipComponents
                             }
                         }
                     }
-                    Laser laserComponent = laser.GetComponent<Laser>();
-                    laserComponent.laserRange = Mathf.Min(range, distance);
-                    GameObject newLaser = Instantiate(laser, castfrom.transform.position, gameObject.transform.rotation) as GameObject;
+
+                    //Laser laserComponent = laser.GetComponent<Laser>();
+                    // laserComponent.laserRange = Mathf.Min(range, distance);
+                    //  GameObject newLaser = Instantiate(laser, castfrom.transform.position, gameObject.transform.rotation) as GameObject;
+                    float laserRange = Mathf.Min(range, distance);
+                    GameObject particleSystem = gameObject.transform.FindChild("LaserParticleSysem").gameObject;
+                    particleSystem.transform.localScale = new Vector3(particleSystem.transform.localScale.x, particleSystem.transform.localScale.y, laserRange);
+                    particleSystem.GetComponent<ParticleSystem>().Emit((int)(10 * laserRange));
                 }
             }
         }
