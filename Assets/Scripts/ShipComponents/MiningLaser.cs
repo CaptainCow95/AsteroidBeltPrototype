@@ -8,6 +8,7 @@ namespace AsteroidBelt.ShipComponents
         public float cooldown;
         public GameObject emptyObject;
         public GameObject laser;
+        public int ParticlesPerBeamUnit;
         public float range;
         public float yield;
         private bool canFire;
@@ -52,7 +53,7 @@ namespace AsteroidBelt.ShipComponents
                     float laserRange = Mathf.Min(range, distance);
                     GameObject particleSystem = gameObject.transform.FindChild("LaserParticleSysem").gameObject;
                     particleSystem.transform.localScale = new Vector3(particleSystem.transform.localScale.x, particleSystem.transform.localScale.y, laserRange);
-                    particleSystem.GetComponent<ParticleSystem>().Emit((int)(10 * laserRange));
+                    particleSystem.GetComponent<ParticleSystem>().Emit((int)(ParticlesPerBeamUnit * laserRange));
                 }
             }
         }

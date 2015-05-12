@@ -115,6 +115,7 @@ MonoBehaviour:
   cooldown: 1
   emptyObject: {fileID: 186410, guid: 6fc52c472392a874ea9fe83e43ee07af, type: 2}
   laser: {fileID: 120128, guid: c6f8bb86e3472ca4392591936ba1f33f, type: 2}
+  ParticlesPerBeamUnit: 20
   range: 10
   yield: 5
 --- !u!198 &19801708
@@ -134,7 +135,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1.5
+      scalar: 1.20000005
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -149,7 +150,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .666666687
+          value: .666666627
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -157,7 +158,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 3
     startSpeed:
-      scalar: 6
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -172,7 +173,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .5
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -274,7 +275,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: .400000006
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -289,7 +290,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .5
+          value: .625
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -398,10 +399,10 @@ ParticleSystem:
       maxCurve:
         serializedVersion: 2
         m_Curve:
-        - time: 0
+        - time: .608832836
           value: 1
-          inSlope: -2
-          outSlope: -2
+          inSlope: -1.03061871e-06
+          outSlope: -1.03061871e-06
           tangentMode: 0
         - time: 1
           value: 0
@@ -470,7 +471,7 @@ ParticleSystem:
           rgba: 4278190335
         key1:
           serializedVersion: 2
-          rgba: 255
+          rgba: 4278251007
         key2:
           serializedVersion: 2
           rgba: 1778384895
@@ -489,7 +490,7 @@ ParticleSystem:
         key7:
           serializedVersion: 2
           rgba: 0
-        ctime0: 0
+        ctime0: 29105
         ctime1: 65535
         ctime2: 65535
         ctime3: 0
@@ -497,7 +498,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 14264
+        atime0: 0
         atime1: 65535
         atime2: 65535
         atime3: 0
@@ -908,17 +909,22 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     magnitude:
-      scalar: 1
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: -2
-          outSlope: -2
+          value: .0784314871
+          inSlope: .119531654
+          outSlope: .119531654
+          tangentMode: 0
+        - time: .895916224
+          value: .0974244475
+          inSlope: -.00405948283
+          outSlope: -.00405948283
           tangentMode: 0
         - time: 1
-          value: 0
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
