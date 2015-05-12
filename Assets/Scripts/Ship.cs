@@ -85,7 +85,8 @@ namespace AsteroidBelt
                     if (item is Thruster)
                     {
                         Vector2 force = ((Thruster)item).GetThrust(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
-                        rigidBody.AddRelativeForce(force * Time.deltaTime);
+                        ((Thruster)item).FireThruster(force.magnitude);
+                        rigidBody.AddRelativeForce(force);
                     }
                     else if (item is Gryoscope)
                     {
@@ -149,25 +150,33 @@ namespace AsteroidBelt
 
                         if (item.ComponentDirection == ShipComponent.Direction.Up && velocity.y < -0.00001f)
                         {
-                            float force = Mathf.Min(((Thruster)item).GetThrust(new Vector2(0, 1)).y * Time.deltaTime, forceToFire.y);
+                            float thrustForce = ((Thruster)item).GetThrust(new Vector2(0, 1)).y;
+                            float force = Mathf.Min(thrustForce, forceToFire.y);
+                            ((Thruster)item).FireThruster(force);
                             forceToFire.y -= force;
                             rigidBody.AddRelativeForce(new Vector2(0, force));
                         }
                         else if (item.ComponentDirection == ShipComponent.Direction.Down && velocity.y > 0.00001f)
                         {
-                            float force = Mathf.Min(((Thruster)item).GetThrust(new Vector2(0, -1)).y * Time.deltaTime, forceToFire.y);
+                            float thrustForce = ((Thruster)item).GetThrust(new Vector2(0, -1)).y;
+                            float force = Mathf.Min(Mathf.Abs(thrustForce), forceToFire.y);
+                            ((Thruster)item).FireThruster(force);
                             forceToFire.y -= force;
-                            rigidBody.AddRelativeForce(new Vector2(0, force));
+                            rigidBody.AddRelativeForce(new Vector2(0, -force));
                         }
                         else if (item.ComponentDirection == ShipComponent.Direction.Left && velocity.x > 0.00001f)
                         {
-                            float force = Mathf.Min(((Thruster)item).GetThrust(new Vector2(-1, 0)).x * Time.deltaTime, forceToFire.x);
+                            float thrustForce = ((Thruster)item).GetThrust(new Vector2(-1, 0)).x;
+                            float force = Mathf.Min(Mathf.Abs(thrustForce), forceToFire.x);
+                            ((Thruster)item).FireThruster(force);
                             forceToFire.x -= force;
-                            rigidBody.AddRelativeForce(new Vector2(force, 0));
+                            rigidBody.AddRelativeForce(new Vector2(-force, 0));
                         }
                         else if (item.ComponentDirection == ShipComponent.Direction.Right && velocity.x < -0.00001f)
                         {
-                            float force = Mathf.Min(((Thruster)item).GetThrust(new Vector2(1, 0)).x * Time.deltaTime, forceToFire.x);
+                            float thrustForce = ((Thruster)item).GetThrust(new Vector2(1, 0)).x;
+                            float force = Mathf.Min(thrustForce, forceToFire.x);
+                            ((Thruster)item).FireThruster(force);
                             forceToFire.x -= force;
                             rigidBody.AddRelativeForce(new Vector2(force, 0));
                         }
