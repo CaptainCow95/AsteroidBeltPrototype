@@ -106,18 +106,6 @@ namespace AsteroidBelt
             }
         }
 
-        public void loadSameShip()
-        {
-        }
-
-        public void reset()
-        {
-            foreach (var item in persistingObjects)
-            {
-                GameObject.Destroy(item);
-            }
-        }
-
         public void SetShipToLoad(List<ShipPart> shipToLoad)
         {
             ShipToLoad = shipToLoad;
