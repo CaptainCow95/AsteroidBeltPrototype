@@ -65,7 +65,7 @@ MonoBehaviour:
   ShipToLoadDefault:
   - Direction: 0
     Location: {x: 0, y: 0}
-    ShipComponent: 9
+    ShipComponent: 12
   - Direction: 0
     Location: {x: 1, y: 0}
     ShipComponent: 6
