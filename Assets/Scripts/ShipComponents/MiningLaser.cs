@@ -7,13 +7,20 @@ namespace AsteroidBelt.ShipComponents
         public Vector2 castfromLocation;
         public float cooldown;
         public GameObject emptyObject;
+        public AudioClip explosionSound;
         public GameObject laser;
         public int ParticlesPerBeamUnit;
         public float range;
+        public AudioClip shootSound;
         public float yield;
         private bool canFire;
         private GameObject castfrom;
+        private float highPitchRange = 1.25F;
+        private float lowPitchRange = .85F;
+        private AudioSource source;
         private float timeLeft;
+        private float volHighRange = 1.0f;
+        private float volLowRange = .5f;
 
         public void Fire()
         {
@@ -24,7 +31,7 @@ namespace AsteroidBelt.ShipComponents
                     canFire = false;
                     timeLeft = cooldown;
                     float distance = range;
-
+                    float vol = Random.Range(volLowRange, volHighRange);
                     RaycastHit2D hit = Physics2D.Raycast(castfrom.transform.position, gameObject.transform.rotation * new Vector3(0, 1));
                     if (hit.collider != null)
                     {
@@ -51,8 +58,8 @@ namespace AsteroidBelt.ShipComponents
 
                             asteroidParticles.transform.rotation = Quaternion.LookRotation((Vector3)hit.point - objectHit.transform.position, new Vector3(0, 0, 1));
                             asteroidParticles.GetComponent<ParticleSystem>().Emit((int)yield * 5);
-
-                            //TODO: kill the prefab after it is instantiated
+                            source.pitch = Random.Range(lowPitchRange, highPitchRange);
+                            source.PlayOneShot(explosionSound, vol);
                         }
                     }
 
@@ -63,6 +70,9 @@ namespace AsteroidBelt.ShipComponents
                     GameObject particleSystem = gameObject.transform.FindChild("LaserParticleSysem").gameObject;
                     particleSystem.transform.localScale = new Vector3(particleSystem.transform.localScale.x, particleSystem.transform.localScale.y, laserRange);
                     particleSystem.GetComponent<ParticleSystem>().Emit((int)(ParticlesPerBeamUnit * laserRange));
+                    vol = Random.Range(volLowRange, volHighRange);
+                    source.pitch = Random.Range(lowPitchRange, highPitchRange);
+                    source.PlayOneShot(shootSound, vol);
                 }
             }
         }
@@ -78,6 +88,7 @@ namespace AsteroidBelt.ShipComponents
             castfrom = Instantiate(emptyObject);
             castfrom.transform.localPosition = castfromLocation;
             castfrom.transform.SetParent(gameObject.transform, false);
+            source = GetComponent<AudioSource>();
         }
 
         protected override void Update()
