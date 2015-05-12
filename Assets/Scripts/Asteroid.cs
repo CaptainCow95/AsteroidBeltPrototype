@@ -8,6 +8,7 @@ namespace AsteroidBelt
     {
         public Vector2[] newUV;
         public int numberOfVertices;
+        public GameObject particleSystemPrefab;
         public float radiusPerMineral;
         private float mineralRating;
         private int[] newTriangles;

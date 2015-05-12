@@ -45,15 +45,14 @@ namespace AsteroidBelt.ShipComponents
                                 ParentShip.GetComponent<Ship>().inventory.PutItem(ore, (int)amountForCargo);
                             }
 
-                            GameObject asteroidParticles = GameManager.Instance.asteroidParticleSystems[(int)ore.type];
+                            GameObject asteroidParticles = Instantiate(asteroid.particleSystemPrefab);
 
-                            //float angle = Vector2.Angle((Vector2)objectHit.transform.position, hit.point);
                             asteroidParticles.transform.position = hit.point;
 
                             asteroidParticles.transform.rotation = Quaternion.LookRotation((Vector3)hit.point - objectHit.transform.position, new Vector3(0, 0, 1));
-
-                            //asteroidParticles.transform.Rotate(new Vector3(0, 0, 1), angle);
                             asteroidParticles.GetComponent<ParticleSystem>().Emit((int)yield * 5);
+
+                            //TODO: kill the prefab after it is instantiated
                         }
                     }
 

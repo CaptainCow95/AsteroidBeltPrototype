@@ -9,8 +9,6 @@ namespace AsteroidBelt
     public class GameManager : Singleton<GameManager>
     {
         public List<GameObject> asteroidOptions;
-        public GameObject[] asteroidParticleSystemPrefabs;
-        public GameObject[] asteroidParticleSystems;
         public GameObject asteroidPrefab;
         public float maxZoomOut;
         public GameObject[] shipComponentPrefabs;
@@ -142,10 +140,6 @@ namespace AsteroidBelt
                      item.SetActive(true);
                  }
                  */
-            for (int i = 0; i < asteroidParticleSystemPrefabs.Length; ++i)
-            {
-                asteroidParticleSystems[i] = GameObject.Instantiate(asteroidParticleSystemPrefabs[i]);
-            }
 
             if (ShipToLoad != null)
             {
