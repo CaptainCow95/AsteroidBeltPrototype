@@ -41,7 +41,7 @@ namespace AsteroidBelt.ShipComponents
                 return new Vector2(dir.x * force * availableThrustPercentage * Time.deltaTime, 0);
             }
 
-            animator.SetBool("ThrusterActive", false);
+            // animator.SetBool("ThrusterActive", false);
 
             return Vector2.zero;
         }
@@ -49,7 +49,9 @@ namespace AsteroidBelt.ShipComponents
         protected override void Start()
         {
             base.Start();
+
             animator = gameObject.GetComponent<Animator>();
+            animator.SetBool("ThrusterActive", false);
         }
     }
 }
