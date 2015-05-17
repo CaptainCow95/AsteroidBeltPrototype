@@ -12,7 +12,11 @@ namespace AsteroidBelt
         public GameObject CurrentPart;
         public GameObject EditorTileParent;
         public GameObject EditorTilePrefab;
-        public GameObject errorLog;
+        public GameObject ErrorPopup;
+        public GameObject ErrorPopupText;
+        public GameObject PopupText;
+        public GameObject PopupTextPanel;
+        public GameObject ShipComponentsPanel;
         public int TilesPerSide;
         private bool scrolling = false;
         private Vector3 scrollStartLocation;
@@ -24,6 +28,11 @@ namespace AsteroidBelt
             Untouched = 0,
             Touched = 1,
             Invalid = 2
+        }
+
+        public void ErrorPopupOkButton()
+        {
+            ErrorPopup.SetActive(false);
         }
 
         public List<ShipPart> GetShip()
@@ -64,6 +73,10 @@ namespace AsteroidBelt
                 GameManager.Instance.SetShipToLoad(GetShip());
                 Application.LoadLevel(1);
             }
+            else
+            {
+                ErrorPopup.SetActive(true);
+            }
         }
 
         public void LoadShip(List<ShipPart> shipToLoad)
@@ -101,6 +114,7 @@ namespace AsteroidBelt
 
         public bool ValidateConnections()
         {
+            string text = string.Empty;
             int totalNumberOfParts = 0;
             bool pass = true;
             int firstX = 0;
@@ -118,14 +132,11 @@ namespace AsteroidBelt
                     }
                 }
             }
-            if (totalNumberOfParts == 1)
+
+            if (totalNumberOfParts > 1)
             {
-                errorLog.GetComponent<Text>().text += "Your ship has " + totalNumberOfParts + " part.\n";
-            }
-            else if (totalNumberOfParts > 1)
-            {
-                errorLog.GetComponent<Text>().text += "Your ship has " + totalNumberOfParts + " parts.\n";
-                SearchResult[,] searchResults = ValidationSearch(firstX, firstY, new SearchResult[TilesPerSide, TilesPerSide]);
+                text += "Your ship has " + totalNumberOfParts + " parts.\n";
+                SearchResult[,] searchResults = ValidationSearch(firstX, firstY, new SearchResult[TilesPerSide, TilesPerSide], ref text);
 
                 int totalTouchedComponents = 0;
                 for (int y = 0; y < TilesPerSide; ++y) // get total number of parts
@@ -142,18 +153,23 @@ namespace AsteroidBelt
                         }
                     }
                 }
+
                 if (totalTouchedComponents != totalNumberOfParts)
                 {
-                    errorLog.GetComponent<Text>().text += "Only " + totalTouchedComponents + " parts are connected\n";
+                    text += "Only " + totalTouchedComponents + " parts are connected";
                     pass = false;
                 }
             }
-            else
+            else if (totalNumberOfParts == 0)
             {
-                errorLog.GetComponent<Text>().text += "Your ship has no parts!\n";
+                text += "Your ship has no parts!";
                 pass = false;
             }
 
+            if (!pass)
+            {
+                ErrorPopupText.GetComponent<Text>().text = text;
+            }
             return pass;
         }
 
@@ -179,8 +195,6 @@ namespace AsteroidBelt
             {
                 LoadShip(GameManager.Instance.ShipToLoad);
             }
-
-            errorLog.GetComponent<Text>().text += "You have " + GameManager.instance.totalCredits + " credits to spend.\n";
         }
 
         private void Update()
@@ -191,7 +205,6 @@ namespace AsteroidBelt
 
                 if (!Input.GetMouseButton(0))
                 {
-                    errorLog.GetComponent<Text>().text += "You have " + GameManager.instance.totalCredits + " credits to spend.\n";
                     Destroy(CurrentPart);
                     CurrentPart = null;
                 }
@@ -220,7 +233,7 @@ namespace AsteroidBelt
             }
         }
 
-        private SearchResult[,] ValidationSearch(int currX, int currY, SearchResult[,] searchTable)
+        private SearchResult[,] ValidationSearch(int currX, int currY, SearchResult[,] searchTable, ref string text)
         {
             ShipEditorTile currentTile = tiles[currX, currY].GetComponent<ShipEditorTile>();
             ShipEditorPart currentComponent = currentTile.Part.GetComponent<ShipEditorPart>();
@@ -293,13 +306,13 @@ namespace AsteroidBelt
                     if (possibleConnection == ShipComponent.PossibleConnection.MustBeEmpty)
                     {
                         searchTable[currX, currY] = SearchResult.Invalid;
-                        errorLog.GetComponent<Text>().text += "Error: a component is bordered on a side that needs to be open\n";
+                        text += "Error: a component is bordered on a side that needs to be open.\n";
                     }
 
                     // if we can connect to the other component and we have not already touched it in our search, search it next
                     if (othersPossibleConnection == ShipComponent.PossibleConnection.Yes && possibleConnection == ShipComponent.PossibleConnection.Yes && searchTable[nextX, nextY] == SearchResult.Untouched)
                     {
-                        searchTable = ValidationSearch(nextX, nextY, searchTable);
+                        searchTable = ValidationSearch(nextX, nextY, searchTable, ref text);
                     }
                 }
             }

@@ -1,7 +1,6 @@
 ﻿using AsteroidBelt.ShipComponents;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace AsteroidBelt
 {
@@ -60,12 +59,10 @@ namespace AsteroidBelt
             int value = ShipEditor.Instance.CurrentPart.GetComponent<ShipEditorPart>().Part.GetComponent<ShipComponent>().value;
             if (value > GameManager.Instance.totalCredits)
             {
-                ShipEditor.Instance.errorLog.GetComponent<Text>().text += "Not enough credits, this part takes " + value + " credits.\n";
                 return;
             }
 
             GameManager.Instance.totalCredits -= value;
-            ShipEditor.Instance.errorLog.GetComponent<Text>().text += "You have " + GameManager.Instance.totalCredits + " credits to spend.\n";
             Part = ShipEditor.Instance.CurrentPart;
             Part.GetComponent<RectTransform>().SetParent(ShipEditor.Instance.EditorTileParent.GetComponent<RectTransform>());
             ShipEditor.Instance.CurrentPart = null;
