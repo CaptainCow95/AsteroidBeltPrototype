@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 using UnityEngine.UI;
 
@@ -14,9 +15,9 @@ namespace AsteroidBelt
         private void Update()
         {
             playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
-            text = gameObject.GetComponentInChildren<Text>();
+            text = gameObject.GetComponentsInChildren<Text>().First(e => e.name == "InventoryText");
             inventory = playerShip.GetComponent<Ship>().inventory;
-            text.text = "Inventory: \n" + inventory;
+            text.text = inventory.ToString();
         }
     }
 }
