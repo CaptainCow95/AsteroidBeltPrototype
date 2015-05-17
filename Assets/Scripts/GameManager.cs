@@ -10,6 +10,7 @@ namespace AsteroidBelt
     {
         public List<GameObject> asteroidOptions;
         public GameObject asteroidPrefab;
+        public List<AudioClip> backgroundAudioClips;
         public float maxZoomOut;
         public GameObject[] shipComponentPrefabs;
         public GameObject shipPrefab;
@@ -19,6 +20,7 @@ namespace AsteroidBelt
         public GameObject stationPrefab;
         public int totalCredits;
         private List<GameObject> persistingObjects = new List<GameObject>();
+        private Queue<AudioClip> playedAudioClips = new Queue<AudioClip>();
 
         public GameObject CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
         {
@@ -133,6 +135,7 @@ namespace AsteroidBelt
             {
                 instance = this;
                 DontDestroyOnLoad(gameObject);
+                Initialize();
             }
             else
             {
@@ -140,27 +143,39 @@ namespace AsteroidBelt
             }
         }
 
+        private void Initialize()
+        {
+            PlayBackgroundMusic();
+        }
+
         private void OnLevelWasLoaded(int level)
         {
             if (level == 0 || level == 2)
             {
-                /*  foreach (var item in persistingObjects)
-                  {
-                      item.SetActive(false);
-                  }*/
                 return;
             }
 
-            /*     foreach (var item in persistingObjects)
-                 {
-                     item.SetActive(true);
-                 }
-                 */
-
-            if (ShipToLoad != null && ShipToLoad.Count() > 0)
+            if (ShipToLoad != null && ShipToLoad.Any())
             {
                 CreateShip(new Vector2(0, 0), ShipToLoad, true);
                 ShipToLoad = null;
+            }
+        }
+
+        private void PlayBackgroundMusic()
+        {
+            int index = Random.Range(0, backgroundAudioClips.Count);
+            while (playedAudioClips.Contains(backgroundAudioClips[index]))
+            {
+                index = Random.Range(0, backgroundAudioClips.Count);
+            }
+
+            GetComponent<AudioSource>().clip = backgroundAudioClips[index];
+            GetComponent<AudioSource>().Play();
+            playedAudioClips.Enqueue(backgroundAudioClips[index]);
+            while (playedAudioClips.Count > backgroundAudioClips.Count / 2)
+            {
+                playedAudioClips.Dequeue();
             }
         }
 
@@ -185,6 +200,11 @@ namespace AsteroidBelt
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize - 1, 3);
+            }
+
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                PlayBackgroundMusic();
             }
         }
     }
