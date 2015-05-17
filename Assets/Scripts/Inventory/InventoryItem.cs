@@ -4,7 +4,7 @@ namespace AsteroidBelt
 {
     public class InventoryItem : MonoBehaviour
     {
-        public string name;
+        public new string name;
         public float size;
         public ItemType type;
         public int value;

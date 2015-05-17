@@ -20,14 +20,10 @@ namespace AsteroidBelt.Level1
 
         private void Awake()
         {
-            //GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 5000, 1000, new Vector2(0f, 0f));
-            // GameObject.DontDestroyOnLoad(gameObject);
             if (firstTime)
             {
-                GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 5000, 1000, new Vector2(0f, 0f));
-
-                //GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 1, 10, new Vector2(0f, 0f));
                 GameManager.Instance.CreateStation(stationPosition, stationPositions, stationDirections, stationComponents);
+                GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 5000, 1000, new Vector2(0f, 0f));
                 firstTime = false;
             }
 

@@ -11,7 +11,7 @@ namespace AsteroidBelt
         public Vector2 source;
         public Vector2 target;
 
-        private MeshRenderer renderer;
+        private new MeshRenderer renderer;
 
         // Use this for initialization
         private void Start()

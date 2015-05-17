@@ -60,8 +60,11 @@ namespace AsteroidBelt
 
         private void Start()
         {
-            stationInteraction = GameObject.FindGameObjectWithTag("StationInteraction");
-            stationInteraction.SetActive(false);
+            if (stationInteraction == null)
+            {
+                stationInteraction = GameObject.FindGameObjectWithTag("StationInteraction");
+                stationInteraction.SetActive(false);
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AsteroidBelt.ShipComponents
 {
@@ -7,36 +6,21 @@ namespace AsteroidBelt.ShipComponents
     {
         public float force;
 
-        // private Animator animator;
-
         public void FireThruster(float forceApplied)
         {
             float percentage = Mathf.Abs(forceApplied) / (force * Time.deltaTime);
-            GameObject particleSystem = gameObject.transform.FindChild("ThrustParticles").gameObject;
             if (percentage > float.Epsilon)
             {
-                //particleSystem.GetComponent<ParticleSystem>().Play();
-                //  animator.SetBool("ThrusterActive", true);
                 ParentShip.GetComponent<Ship>().drawPower(-powerSupply * percentage * Time.deltaTime);
             }
-            else
-            {
-                // animator.SetBool("ThrusterActive", false);
 
-                //particleSystem.GetComponent<ParticleSystem>().Pause();
-            }
-            List<ParticleSystem> pss = new List<ParticleSystem>();
             foreach (Transform child in transform)
             {
                 ParticleSystem ps = child.gameObject.GetComponent<ParticleSystem>();
                 if (ps != null)
                 {
-                    pss.Add(ps);
+                    ps.emissionRate = percentage * 100;
                 }
-            }
-            foreach (var ps in pss)
-            {
-                ps.emissionRate = percentage * 100;
             }
 
             AudioSource source = GetComponent<AudioSource>();
@@ -56,17 +40,7 @@ namespace AsteroidBelt.ShipComponents
                 return new Vector2(dir.x * force * availableThrustPercentage * Time.deltaTime, 0);
             }
 
-            // animator.SetBool("ThrusterActive", false);
-
             return Vector2.zero;
-        }
-
-        protected override void Start()
-        {
-            base.Start();
-
-            //animator = gameObject.GetComponent<Animator>();
-            // animator.SetBool("ThrusterActive", false);
         }
     }
 }

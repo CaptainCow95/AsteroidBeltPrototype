@@ -20,7 +20,7 @@ namespace AsteroidBelt
         public int totalCredits;
         private List<GameObject> persistingObjects = new List<GameObject>();
 
-        public void CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
+        public GameObject CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
         {
             GameObject asteroidObject = (GameObject)Instantiate(asteroidToInstantiate, position, Quaternion.identity);
             Asteroid asteroid = asteroidObject.GetComponent<Asteroid>();
@@ -29,11 +29,12 @@ namespace AsteroidBelt
             asteroid.MineralRating = mineralRating;
             persistingObjects.Add(asteroidObject);
             GameObject.DontDestroyOnLoad(asteroidObject);
+            return asteroidObject;
         }
 
-        public void CreateAsteroid(Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
+        public GameObject CreateAsteroid(Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
         {
-            CreateAsteroid(asteroidPrefab, position, radiusPerMineral, numberOfVertices, mineralRating);
+            return CreateAsteroid(asteroidPrefab, position, radiusPerMineral, numberOfVertices, mineralRating);
         }
 
         public void CreateShip(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, ShipComponentType[] shipComponents, bool playerControlled)
@@ -78,6 +79,7 @@ namespace AsteroidBelt
                 component.ComponentDirection = componentDirections[i];
                 station.AddStationComponent(component);
             }
+
             GameObject.DontDestroyOnLoad(stationObject);
             persistingObjects.Add(stationObject);
         }
@@ -95,15 +97,23 @@ namespace AsteroidBelt
                     }
                     else
                     {
-                        Debug.LogError("More asteroid rarities that asteroids");
+                        Debug.LogError("More asteroid rarities than asteroids");
                     }
                 }
             }
+
             for (int i = 0; i < numberOfAsteroids; ++i)
             {
                 var randomAsteroid = weightedAsteroidList[Random.Range(0, weightedAsteroidList.Count())];
                 Vector2 newPosition = new Vector2(Random.Range(-range, +range) + origin.x, Random.Range(-range, +range) + origin.y);
-                CreateAsteroid(randomAsteroid, newPosition, .01f, 16, Random.Range(50f, 300f));
+                var asteroidObject = CreateAsteroid(randomAsteroid, newPosition, .01f, 16, Random.Range(50f, 300f));
+                var colliders = Physics2D.OverlapCircleAll(asteroidObject.transform.position, 1.1f * asteroidObject.transform.localScale.x);
+                if (colliders.Length > 1)
+                {
+                    persistingObjects.Remove(asteroidObject);
+                    DestroyImmediate(asteroidObject);
+                    --i;
+                }
             }
         }
 
