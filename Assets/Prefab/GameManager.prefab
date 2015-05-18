@@ -166,7 +166,7 @@ MonoBehaviour:
   - {fileID: 193722, guid: c55d381fa04bda942843e84a9bf6aaea, type: 2}
   stationPrefab: {fileID: 150574, guid: c583bf2df5803cf4791adb3cd086690e, type: 2}
   totalCredits: 100
-  WaypointPrefab: {fileID: 0}
+  WaypointPrefab: {fileID: 177196, guid: f4ffc0e33abfa8f459660f15107588ea, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
