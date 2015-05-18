@@ -19,6 +19,7 @@ namespace AsteroidBelt
         public GameObject[] stationComponentPrefabs;
         public GameObject stationPrefab;
         public int totalCredits;
+        public GameObject WaypointPrefab;
         private List<GameObject> persistingObjects = new List<GameObject>();
         private Queue<AudioClip> playedAudioClips = new Queue<AudioClip>();
 
@@ -30,7 +31,7 @@ namespace AsteroidBelt
             asteroid.numberOfVertices = numberOfVertices;
             asteroid.MineralRating = mineralRating;
             persistingObjects.Add(asteroidObject);
-            GameObject.DontDestroyOnLoad(asteroidObject);
+            DontDestroyOnLoad(asteroidObject);
             return asteroidObject;
         }
 
@@ -39,7 +40,7 @@ namespace AsteroidBelt
             return CreateAsteroid(asteroidPrefab, position, radiusPerMineral, numberOfVertices, mineralRating);
         }
 
-        public void CreateShip(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, ShipComponentType[] shipComponents, bool playerControlled)
+        public GameObject CreateShip(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, ShipComponentType[] shipComponents, bool playerControlled)
         {
             GameObject shipObject = (GameObject)Instantiate(shipPrefab, position, Quaternion.identity);
             Ship ship = shipObject.GetComponent<Ship>();
@@ -52,9 +53,11 @@ namespace AsteroidBelt
                 comp.ComponentDirection = componentDirections[i];
                 ship.AddShipComponent(comp);
             }
+
+            return shipObject;
         }
 
-        public void CreateShip(Vector2 position, List<ShipPart> shipParts, bool playerControlled)
+        public GameObject CreateShip(Vector2 position, List<ShipPart> shipParts, bool playerControlled)
         {
             Vector2[] componentPositions = new Vector2[shipParts.Count];
             ShipComponent.Direction[] componentDirections = new ShipComponent.Direction[shipParts.Count];
@@ -66,10 +69,10 @@ namespace AsteroidBelt
                 componentDirections[i] = shipParts[i].Direction;
                 shipComponents[i] = shipParts[i].ShipComponent;
             }
-            CreateShip(position, componentPositions, componentDirections, shipComponents, playerControlled);
+            return CreateShip(position, componentPositions, componentDirections, shipComponents, playerControlled);
         }
 
-        public void CreateStation(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, ShipComponentType[] stationComponents)
+        public GameObject CreateStation(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, ShipComponentType[] stationComponents)
         {
             GameObject stationObject = (GameObject)Instantiate(stationPrefab, position, Quaternion.identity);
             Station station = stationObject.GetComponent<Station>();
@@ -82,8 +85,19 @@ namespace AsteroidBelt
                 station.AddStationComponent(component);
             }
 
-            GameObject.DontDestroyOnLoad(stationObject);
+            DontDestroyOnLoad(stationObject);
             persistingObjects.Add(stationObject);
+            return stationObject;
+        }
+
+        public void CreateWaypoint(Vector2 location)
+        {
+            GameObject waypointObject = Instantiate(WaypointPrefab);
+            waypointObject.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+            Waypoint waypoint = waypointObject.GetComponent<Waypoint>();
+            waypoint.Location = location;
+            persistingObjects.Add(waypointObject);
+            DontDestroyOnLoad(waypointObject);
         }
 
         public void GenerateRandomAsteroids(List<int> asteroidRarities, int numberOfAsteroids, float range, Vector2 origin)

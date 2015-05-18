@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 495944}
   - 114: {fileID: 11437014}
+  - 82: {fileID: 8214058}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -28,6 +29,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &8214058
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111590}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: .25
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11437014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -44,6 +114,8 @@ MonoBehaviour:
   - {fileID: 138122, guid: e1e3dd64841e8504bb1d2b8ac8dc309e, type: 2}
   - {fileID: 198128, guid: 1600b7480b43ef8469041cbed4ab943c, type: 2}
   asteroidPrefab: {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
+  backgroundAudioClips:
+  - {fileID: 8300000, guid: a6cab4db9e1d40d40a8d71285686e016, type: 3}
   maxZoomOut: 40
   shipComponentPrefabs:
   - {fileID: 120158, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
@@ -94,6 +166,7 @@ MonoBehaviour:
   - {fileID: 193722, guid: c55d381fa04bda942843e84a9bf6aaea, type: 2}
   stationPrefab: {fileID: 150574, guid: c583bf2df5803cf4791adb3cd086690e, type: 2}
   totalCredits: 100
+  WaypointPrefab: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
