@@ -169,7 +169,7 @@ MonoBehaviour:
   powerCapacity: 0
   powerSupply: -10
   UIShipPart: {fileID: 167120, guid: 128a8a8c01877e74dbf1e26f6d086497, type: 2}
-  value: 25
+  value: 50
   force: 10000
 --- !u!198 &19831706
 ParticleSystem:

@@ -62,7 +62,7 @@ MonoBehaviour:
   powerCapacity: 300
   powerSupply: 0
   UIShipPart: {fileID: 148864, guid: 49384836a76cccc45b53feeedea07112, type: 2}
-  value: 5
+  value: 10
 --- !u!212 &21209900
 SpriteRenderer:
   m_ObjectHideFlags: 1

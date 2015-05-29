@@ -62,7 +62,7 @@ MonoBehaviour:
   powerCapacity: 0
   powerSupply: 0
   UIShipPart: {fileID: 116986, guid: 27304026f9806ec4abd730c0641758ed, type: 2}
-  value: 25
+  value: 30
   torque: 10000
 --- !u!212 &21284510
 SpriteRenderer:
