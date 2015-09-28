@@ -10,8 +10,9 @@ namespace AsteroidBelt
         public Vector2[] newUV;
         public int numberOfVertices;
         public GameObject particleSystemPrefab;
-        public float radiusPerMineral;
+        public static float radiusPerMineral = .01f;
 
+        private int gridIndex;
         private float mineralRating;
         private int[] newTriangles;
         private Vector3[] newVertices;
@@ -113,6 +114,19 @@ namespace AsteroidBelt
         private void Start()
         {
             CreateMesh();
+        }
+    }
+
+    public struct AsteroidData
+    {
+        public float mineralRating;
+        public float xPosition;
+        public float yPostition;
+        public AsteroidBelt.InventoryItem.ItemType oreType;
+
+        public float Radius
+        {
+            get { return Asteroid.radiusPerMineral * mineralRating; }
         }
     }
 }

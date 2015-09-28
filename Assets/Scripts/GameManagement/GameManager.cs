@@ -23,11 +23,10 @@ namespace AsteroidBelt
         private List<GameObject> persistingObjects = new List<GameObject>();
         private Queue<AudioClip> playedAudioClips = new Queue<AudioClip>();
 
-        public GameObject CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
+        public GameObject CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, int numberOfVertices, float mineralRating)
         {
             GameObject asteroidObject = (GameObject)Instantiate(asteroidToInstantiate, position, Quaternion.identity);
             Asteroid asteroid = asteroidObject.GetComponent<Asteroid>();
-            asteroid.radiusPerMineral = radiusPerMineral;
             asteroid.numberOfVertices = numberOfVertices;
             asteroid.MineralRating = mineralRating;
             persistingObjects.Add(asteroidObject);
@@ -37,7 +36,7 @@ namespace AsteroidBelt
 
         public GameObject CreateAsteroid(Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
         {
-            return CreateAsteroid(asteroidPrefab, position, radiusPerMineral, numberOfVertices, mineralRating);
+            return CreateAsteroid(asteroidPrefab, position, numberOfVertices, mineralRating);
         }
 
         public GameObject CreateShip(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, ShipComponentType[] shipComponents, bool playerControlled)
@@ -122,7 +121,7 @@ namespace AsteroidBelt
             {
                 var randomAsteroid = weightedAsteroidList[Random.Range(0, weightedAsteroidList.Count())];
                 Vector2 newPosition = new Vector2(Random.Range(-range, +range) + origin.x, Random.Range(-range, +range) + origin.y);
-                var asteroidObject = CreateAsteroid(randomAsteroid, newPosition, .01f, 16, Random.Range(50f, 300f));
+                var asteroidObject = CreateAsteroid(randomAsteroid, newPosition, 16, Random.Range(50f, 300f));
                 var colliders = Physics2D.OverlapCircleAll(asteroidObject.transform.position, 1.1f * asteroidObject.transform.localScale.x);
                 if (colliders.Length > 1)
                 {
