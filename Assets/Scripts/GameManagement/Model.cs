@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AsteroidBelt.MVC
+namespace AsteroidBelt.GameManagement
 {
     public class Model
     {
@@ -72,7 +72,7 @@ namespace AsteroidBelt.MVC
             grids[index].asteroidDataDictionary = new Dictionary<int, AsteroidData>();
             for (int i = 0; i < numberOfAsteroids; ++i)
             {
-                AsteroidData data;
+                AsteroidData data = new AsteroidData();
                 data.mineralRating = UnityEngine.Random.Range(50f, 300f);
                 data.xPosition = UnityEngine.Random.Range(-rangeX, +rangeX) + origin.x;
                 data.yPostition = UnityEngine.Random.Range(-rangeY, +rangeY) + origin.y;

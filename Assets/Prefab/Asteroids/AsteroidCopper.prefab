@@ -89,14 +89,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 138122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2faf0dad9c1c3d4ea15bfcb7d4a4d72, type: 3}
+  m_Script: {fileID: 11500000, guid: bfa7aeb6867a0a74f9223a5ad4fbe65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageConstant: .5
   newUV: []
   numberOfVertices: 16
   particleSystemPrefab: {fileID: 190482, guid: 09ab7bb3f25277949b5eff33633a0c86, type: 2}
-  radiusPerMineral: 0
 --- !u!114 &11496694
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts.GameManagement
+namespace AsteroidBelt.GameManagement
 {
     internal class View : MonoBehaviour
     {
         public int maxZoomOut;
+
+        private Dictionary<int, GameObject> gameObjectByGrid;
+        private Model gameModel;
+
+        private void start()
+        {
+        }
 
         private void Update()
         {

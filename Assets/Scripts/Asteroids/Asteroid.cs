@@ -16,6 +16,7 @@ namespace AsteroidBelt
         private float mineralRating;
         private int[] newTriangles;
         private Vector3[] newVertices;
+        public GameManagement.Model dataModel;
 
         public float MineralRating
         {
@@ -117,7 +118,7 @@ namespace AsteroidBelt
         }
     }
 
-    public struct AsteroidData
+    public class AsteroidData
     {
         public float mineralRating;
         public float xPosition;
