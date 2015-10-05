@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AsteroidBelt.GameManagement;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,35 +9,50 @@ namespace AsteroidBelt
     {
         public float damageConstant;
         public Vector2[] newUV;
-        public int numberOfVertices;
+        public int _numberOfVertices;
         public GameObject particleSystemPrefab;
         public static float radiusPerMineral = .01f;
-        public int id;
-        public int grid;
+        public int _id;
+        public int _grid;
 
         private int gridIndex;
-        private float mineralRating;
+        private float _mineralRating;
         private int[] newTriangles;
         private Vector3[] newVertices;
-        public GameManagement.Model dataModel;
+        public Model dataModel;
 
         public float MineralRating
         {
             get
             {
-                return mineralRating;
+                return _mineralRating;
             }
 
             set
             {
-                mineralRating = value;
-                if (mineralRating * radiusPerMineral <= .1)
+                _mineralRating = value;
+                if (_mineralRating * radiusPerMineral <= .1)
                 {
                     Destroy(gameObject);
+                    dataModel.DeleteAsteroid(_grid, _id);
                 }
-                float scale = mineralRating * radiusPerMineral;
-                gameObject.transform.localScale = new Vector3(scale, scale, 1);
+                else
+                {
+                    float scale = _mineralRating * radiusPerMineral;
+                    gameObject.transform.localScale = new Vector3(scale, scale, 1);
+                    dataModel.UpdateMineral(_grid, _id, _mineralRating);
+                }
             }
+        }
+
+        public void InitValues(int grid, int id, int numberOfVertices, float mineralRating)
+        {
+            _grid = grid;
+            _id = id;
+            _numberOfVertices = numberOfVertices;
+            _mineralRating = mineralRating;
+            float scale = _mineralRating * radiusPerMineral;
+            gameObject.transform.localScale = new Vector3(scale, scale, 1);
         }
 
         private void CreateMesh()
@@ -88,7 +104,7 @@ namespace AsteroidBelt
                 float x = randRad * Mathf.Cos(theta);
                 float y = randRad * Mathf.Sin(theta);
                 vertices.Add(new Vector3(x, y));
-                theta -= (2f * Mathf.PI) / numberOfVertices;
+                theta -= (2f * Mathf.PI) / _numberOfVertices;
             }
 
             newVertices = vertices.ToArray();
@@ -102,7 +118,7 @@ namespace AsteroidBelt
             if (rb2d != null)
             {
                 float damage = rb2d.velocity.magnitude * rb2d.mass * damageConstant;
-                MineralRating = mineralRating - damage;
+                MineralRating = _mineralRating - damage;
 
                 GameObject asteroidParticles = Instantiate(particleSystemPrefab);
 
@@ -117,6 +133,7 @@ namespace AsteroidBelt
         private void Start()
         {
             CreateMesh();
+            dataModel = Model.GetInstance();
         }
     }
 

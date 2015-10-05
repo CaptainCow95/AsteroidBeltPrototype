@@ -35,10 +35,7 @@ namespace AsteroidBelt.GameManagement
             GameObject asteroidPrefab = asteroidPrefabs[(int)data.oreType];
             GameObject asteroidObject = (GameObject)Instantiate(asteroidPrefab, new Vector2(data.xPosition, data.yPostition), Quaternion.identity);
             Asteroid asteroid = asteroidObject.GetComponent<Asteroid>();
-            asteroid.numberOfVertices = 16;
-            asteroid.MineralRating = data.mineralRating;
-            asteroid.id = id;
-            asteroid.grid = grid;
+            asteroid.InitValues(grid, id, 16, data.mineralRating);
             if (!gameObjectsByGrid.ContainsKey(grid)) { gameObjectsByGrid.Add(grid, new List<GameObject>()); }
             gameObjectsByGrid[grid].Add(asteroidObject);
         }

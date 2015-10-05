@@ -20,6 +20,21 @@ namespace AsteroidBelt.GameManagement
         private int _numberOfVerticalGrids;
         private float maxNumberOfAsteroids = 20;
 
+        public void DeleteAsteroid(int grid, int id)
+        {
+            grids[grid].asteroidDataDictionary.Remove(id);
+        }
+
+        public void UpdateMineral(int grid, int id, float mineralRating)
+        {
+            grids[grid].asteroidDataDictionary[id].mineralRating = mineralRating;
+        }
+
+        public static Model GetInstance()
+        {
+            return instance;
+        }
+
         public static Model GetInstance(int randomSeed, float maxViewWidth, float maxViewHeight, float worldSize)
         {
             if (instance == null)
