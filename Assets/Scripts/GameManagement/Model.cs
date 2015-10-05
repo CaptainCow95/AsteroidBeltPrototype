@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace AsteroidBelt.GameManagement
 {
     public class Model
     {
-        private float gridsPerScreenSize = .25f;
+        private static Model instance;
+        private float gridsPerScreenSize = 1f;
         private int _randomSeed;
         private Grid[] grids;
         private float _maxViewWidth;
@@ -16,9 +18,18 @@ namespace AsteroidBelt.GameManagement
         private float _worldSize;
         private int _numberOfHorizontalGrids;
         private int _numberOfVerticalGrids;
-        private int maxAsteroidDenisty;
+        private float maxNumberOfAsteroids = 20;
 
-        public Model(int randomSeed, float maxViewWidth, float maxViewHeight, float worldSize)
+        public static Model GetInstance(int randomSeed, float maxViewWidth, float maxViewHeight, float worldSize)
+        {
+            if (instance == null)
+            {
+                instance = new Model(randomSeed, maxViewWidth, maxViewHeight, worldSize);
+            }
+            return instance;
+        }
+
+        private Model(int randomSeed, float maxViewWidth, float maxViewHeight, float worldSize)
         {
             _randomSeed = randomSeed;
             _maxViewHeight = maxViewHeight;
@@ -27,17 +38,25 @@ namespace AsteroidBelt.GameManagement
             _gridWidth = gridsPerScreenSize * _maxViewWidth;
             _worldSize = worldSize;
 
-            int _numberOfHorizontalGrids = (int)Math.Ceiling(_worldSize / _gridWidth);
-            int _numberOfVerticalGrids = (int)Math.Ceiling(_worldSize / _gridHeight);
+            _numberOfHorizontalGrids = (int)Math.Ceiling(_worldSize / _gridWidth);
+            _numberOfVerticalGrids = (int)Math.Ceiling(_worldSize / _gridHeight);
 
             grids = new Grid[_numberOfHorizontalGrids * _numberOfVerticalGrids];
+            Debug.Log("Size of grids array is " + sizeof(int) * 4 * _numberOfHorizontalGrids * _numberOfVerticalGrids / (1028 * 1028) + "MB");
         }
 
         public int WorldToGridIndex(Vector2 worldCoordinates)
         {
-            int x = (int)(worldCoordinates.x / _gridWidth);
-            int y = (int)(worldCoordinates.y / _gridHeight);
-            return coordsToIndex(x, y);
+            IntVector2 coords = WorldToIntCoords(worldCoordinates);
+            return coordsToIndex(coords.x, coords.y);
+        }
+
+        public IntVector2 WorldToIntCoords(Vector2 worldCoordinates)
+        {
+            IntVector2 coords;
+            coords.x = (int)((worldCoordinates.x + (_worldSize / 2)) / _gridWidth);
+            coords.y = (int)((worldCoordinates.y + (_worldSize / 2)) / _gridHeight);
+            return coords;
         }
 
         public int coordsToIndex(int x, int y)
@@ -50,6 +69,8 @@ namespace AsteroidBelt.GameManagement
             int x = index % _numberOfHorizontalGrids;
             int y = index / _numberOfHorizontalGrids;
             Vector2 worldCoords = new Vector2(x * _gridWidth + .5f * _gridWidth, y * _gridHeight + .5f * _gridHeight);
+            worldCoords.x -= (_worldSize / 2);
+            worldCoords.y -= (_worldSize / 2);
             return worldCoords;
         }
 
@@ -58,11 +79,10 @@ namespace AsteroidBelt.GameManagement
             int n = 4;
             int randomSeed = _randomSeed + (index * 522);
             UnityEngine.Random.seed = randomSeed;
-            int max = maxAsteroidDenisty / n;
-            int numberOfAsteroids = 1;
-            for (int i = 0; n < 4; ++i)
+            float numberOfAsteroids = 1;
+            for (int i = 0; i < n; ++i)
             {
-                numberOfAsteroids *= UnityEngine.Random.Range(0, max + 1);
+                numberOfAsteroids += UnityEngine.Random.Range(0f, maxNumberOfAsteroids / 4 + 1f);
             }
 
             float rangeX = _gridWidth / 2f;
@@ -79,13 +99,15 @@ namespace AsteroidBelt.GameManagement
                 data.oreType = InventoryItem.ItemType.IronOre; //TODO: change once asteroids are multi
                 grids[index].asteroidDataDictionary.Add(i, data);
             }
+            grids[index].generated = true;
         }
 
         public Dictionary<int, Dictionary<int, AsteroidData>> getNearbyAsteroids(Vector2 worldCoords)
         {
             Dictionary<int, Dictionary<int, AsteroidData>> resultSet = new Dictionary<int, Dictionary<int, AsteroidData>>();
-            int x = (int)(worldCoords.x / _gridWidth);
-            int y = (int)(worldCoords.y / _gridHeight);
+            var coords = WorldToIntCoords(worldCoords);
+            int x = coords.x;
+            int y = coords.y;
             for (int i = -1; i < 2; ++i)
             {
                 for (int j = -1; j < 2; ++j)
@@ -99,6 +121,7 @@ namespace AsteroidBelt.GameManagement
                         {
                             generateGrid(index);
                         }
+                        resultSet.Add(index, grids[index].asteroidDataDictionary);
                     }
                 }
             }

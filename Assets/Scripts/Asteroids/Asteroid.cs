@@ -11,6 +11,8 @@ namespace AsteroidBelt
         public int numberOfVertices;
         public GameObject particleSystemPrefab;
         public static float radiusPerMineral = .01f;
+        public int id;
+        public int grid;
 
         private int gridIndex;
         private float mineralRating;
