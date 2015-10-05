@@ -8,7 +8,7 @@ namespace AsteroidBelt.GameManagement
     public class Model
     {
         private static Model instance;
-        private float gridsPerScreenSize = 1f;
+        private float gridsPerScreenSize = 1f; //for demonstrative purposes, should be set to 1 for final game. Can be set to a fraction to watch asteroids load and unload on-camera
         private int _randomSeed;
         private Grid[] grids;
         private float _maxViewWidth;
