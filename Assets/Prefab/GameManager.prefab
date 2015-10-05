@@ -106,17 +106,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 111590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23914b358a2c024f84219593cc7a690, type: 3}
+  m_Script: {fileID: 11500000, guid: 4adb3d701c93426459ae45eec6f0d5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidOptions:
-  - {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
-  - {fileID: 138122, guid: e1e3dd64841e8504bb1d2b8ac8dc309e, type: 2}
-  - {fileID: 198128, guid: 1600b7480b43ef8469041cbed4ab943c, type: 2}
-  asteroidPrefab: {fileID: 108672, guid: 5d2d17bc9cbd60349b6b10fc46fcbbec, type: 2}
   backgroundAudioClips:
   - {fileID: 8300000, guid: a6cab4db9e1d40d40a8d71285686e016, type: 3}
-  maxZoomOut: 40
   shipComponentPrefabs:
   - {fileID: 120158, guid: f2b7a1d353724a046a4c89c4bcdda068, type: 2}
   - {fileID: 132378, guid: e00be612e39f0924d8d6a95476c2ee92, type: 2}
@@ -136,36 +130,39 @@ MonoBehaviour:
   ShipToLoad: []
   ShipToLoadDefault:
   - Direction: 0
-    Location: {x: 0, y: 0}
-    ShipComponent: 5
-  - Direction: 0
     Location: {x: 1, y: 0}
-    ShipComponent: 6
+    ShipComponent: 0
+  - Direction: 0
+    Location: {x: 0, y: 2}
+    ShipComponent: 11
+  - Direction: 0
+    Location: {x: -1, y: 1}
+    ShipComponent: 3
+  - Direction: 0
+    Location: {x: 0, y: 1}
+    ShipComponent: 13
+  - Direction: 0
+    Location: {x: 0, y: 0}
+    ShipComponent: 9
   - Direction: 0
     Location: {x: 0, y: -1}
-    ShipComponent: 2
-  - Direction: 0
+    ShipComponent: 12
+  - Direction: 3
     Location: {x: 1, y: -1}
-    ShipComponent: 3
+    ShipComponent: 8
+  - Direction: 1
+    Location: {x: -1, y: -1}
+    ShipComponent: 8
   - Direction: 2
-    Location: {x: 0, y: 1}
-    ShipComponent: 1
-  - Direction: 0
-    Location: {x: 1, y: 1}
-    ShipComponent: 4
+    Location: {x: 1, y: -1}
+    ShipComponent: 8
   - Direction: 0
     Location: {x: 0, y: -2}
-    ShipComponent: 1
-  - Direction: 3
-    Location: {x: 2, y: 0}
-    ShipComponent: 1
-  - Direction: 1
-    Location: {x: -1, y: 0}
-    ShipComponent: 1
+    ShipComponent: 8
   stationComponentPrefabs:
   - {fileID: 193722, guid: c55d381fa04bda942843e84a9bf6aaea, type: 2}
   stationPrefab: {fileID: 150574, guid: c583bf2df5803cf4791adb3cd086690e, type: 2}
-  totalCredits: 100
+  totalCredits: 200
   WaypointPrefab: {fileID: 177196, guid: f4ffc0e33abfa8f459660f15107588ea, type: 2}
 --- !u!1001 &100100000
 Prefab:

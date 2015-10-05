@@ -8,10 +8,7 @@ namespace AsteroidBelt
 {
     public class GameManager : Singleton<GameManager>
     {
-        public List<GameObject> asteroidOptions;
-        public GameObject asteroidPrefab;
         public List<AudioClip> backgroundAudioClips;
-        public float maxZoomOut;
         public GameObject[] shipComponentPrefabs;
         public GameObject shipPrefab;
         public List<ShipPart> ShipToLoad;
@@ -22,23 +19,6 @@ namespace AsteroidBelt
         public GameObject WaypointPrefab;
         private List<GameObject> persistingObjects = new List<GameObject>();
         private Queue<AudioClip> playedAudioClips = new Queue<AudioClip>();
-
-        public GameObject CreateAsteroid(GameObject asteroidToInstantiate, Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
-        {
-            GameObject asteroidObject = (GameObject)Instantiate(asteroidToInstantiate, position, Quaternion.identity);
-            Asteroid asteroid = asteroidObject.GetComponent<Asteroid>();
-            asteroid.radiusPerMineral = radiusPerMineral;
-            asteroid.numberOfVertices = numberOfVertices;
-            asteroid.MineralRating = mineralRating;
-            persistingObjects.Add(asteroidObject);
-            DontDestroyOnLoad(asteroidObject);
-            return asteroidObject;
-        }
-
-        public GameObject CreateAsteroid(Vector2 position, float radiusPerMineral, int numberOfVertices, float mineralRating)
-        {
-            return CreateAsteroid(asteroidPrefab, position, radiusPerMineral, numberOfVertices, mineralRating);
-        }
 
         public GameObject CreateShip(Vector2 position, Vector2[] componentPositions, ShipComponent.Direction[] componentDirections, ShipComponentType[] shipComponents, bool playerControlled)
         {
@@ -98,39 +78,6 @@ namespace AsteroidBelt
             waypoint.Location = location;
             persistingObjects.Add(waypointObject);
             DontDestroyOnLoad(waypointObject);
-        }
-
-        public void GenerateRandomAsteroids(List<int> asteroidRarities, int numberOfAsteroids, float range, Vector2 origin)
-        {
-            List<GameObject> weightedAsteroidList = new List<GameObject>();
-            for (int i = 0; i < asteroidRarities.Count(); ++i)
-            {
-                for (int j = 0; j < asteroidRarities[i]; ++j)
-                {
-                    if (i < asteroidOptions.Count())
-                    {
-                        weightedAsteroidList.Add(asteroidOptions[i]);
-                    }
-                    else
-                    {
-                        Debug.LogError("More asteroid rarities than asteroids");
-                    }
-                }
-            }
-
-            for (int i = 0; i < numberOfAsteroids; ++i)
-            {
-                var randomAsteroid = weightedAsteroidList[Random.Range(0, weightedAsteroidList.Count())];
-                Vector2 newPosition = new Vector2(Random.Range(-range, +range) + origin.x, Random.Range(-range, +range) + origin.y);
-                var asteroidObject = CreateAsteroid(randomAsteroid, newPosition, .01f, 16, Random.Range(50f, 300f));
-                var colliders = Physics2D.OverlapCircleAll(asteroidObject.transform.position, 1.1f * asteroidObject.transform.localScale.x);
-                if (colliders.Length > 1)
-                {
-                    persistingObjects.Remove(asteroidObject);
-                    DestroyImmediate(asteroidObject);
-                    --i;
-                }
-            }
         }
 
         public void SetShipToLoad(List<ShipPart> shipToLoad)
@@ -195,27 +142,6 @@ namespace AsteroidBelt
 
         private void Update()
         {
-            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            var playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
-            if (playerShip != null)
-            {
-                var pos = mainCamera.transform.position;
-                Vector3 centerOfMass = playerShip.transform.rotation * (Vector3)playerShip.GetComponent<Rigidbody2D>().centerOfMass;
-
-                pos.x = centerOfMass.x + playerShip.transform.position.x;
-                pos.y = centerOfMass.y + playerShip.transform.position.y;
-                mainCamera.transform.position = pos;
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") < 0)
-            {
-                Camera.main.orthographicSize = Mathf.Min(Camera.main.orthographicSize + 1, maxZoomOut);
-            }
-            if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            {
-                Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize - 1, 3);
-            }
-
             if (!GetComponent<AudioSource>().isPlaying)
             {
                 PlayBackgroundMusic();

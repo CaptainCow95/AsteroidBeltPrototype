@@ -29,7 +29,6 @@ namespace AsteroidBelt.Level1
             {
                 var station = GameManager.Instance.CreateStation(stationPosition, stationPositions, stationDirections, stationComponents);
                 GameManager.Instance.CreateWaypoint(station.GetComponent<Rigidbody2D>().worldCenterOfMass);
-                GameManager.Instance.GenerateRandomAsteroids(asteroidRarities, 5000, 1000, new Vector2(0f, 0f));
                 firstTime = false;
             }
         }
