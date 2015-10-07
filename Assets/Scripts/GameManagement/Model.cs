@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace AsteroidBelt.GameManagement
 {
+    [Serializable]
     public class Model
     {
         private static Model instance;
@@ -19,6 +23,31 @@ namespace AsteroidBelt.GameManagement
         private int _numberOfHorizontalGrids;
         private int _numberOfVerticalGrids;
         private float maxNumberOfAsteroids = 20;
+
+        public static void SaveModel(String filename)
+        {
+            if (instance == null)
+            {
+                throw new Exception("Model had no isntantiated instance when save was called.");
+            }
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, instance);
+            stream.Close();
+        }
+
+        public static void LoadModel(String filename)
+        {
+            GC.Collect();
+            instance = null;
+            using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.None))
+            {
+                IFormatter formatter = new BinaryFormatter();
+                instance = (Model)formatter.Deserialize(stream);
+                stream.Close();
+            }
+            GC.Collect();
+        }
 
         public void DeleteAsteroid(int grid, int id)
         {
@@ -150,6 +179,7 @@ namespace AsteroidBelt.GameManagement
         public int y;
     }
 
+    [Serializable]
     internal struct Grid
     {
         public bool visited;

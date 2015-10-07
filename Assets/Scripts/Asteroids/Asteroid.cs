@@ -1,4 +1,5 @@
 ﻿using AsteroidBelt.GameManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -100,7 +101,7 @@ namespace AsteroidBelt
             float theta = (2f * Mathf.PI);
             while (theta > 0 + (Mathf.Epsilon))
             {
-                float randRad = Random.Range(.90f, 1.10f);
+                float randRad = UnityEngine.Random.Range(.90f, 1.10f);
                 float x = randRad * Mathf.Cos(theta);
                 float y = randRad * Mathf.Sin(theta);
                 vertices.Add(new Vector3(x, y));
@@ -137,6 +138,10 @@ namespace AsteroidBelt
         }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    [Serializable]
     public class AsteroidData
     {
         public float mineralRating;

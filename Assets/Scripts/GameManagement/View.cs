@@ -16,6 +16,20 @@ namespace AsteroidBelt.GameManagement
         private int oldGrid;
         public int worldSideLength;
 
+        private static string filename = "testSaveFile.sav";
+
+        public void SaveLevel()
+        {
+            Model.SaveModel(filename);
+        }
+
+        public void LoadLevel()
+        {
+            gameModel = null;
+            Model.LoadModel(filename);
+            Refresh();
+        }
+
         private void Awake()
         {
             gameObjectsByGrid = new Dictionary<int, List<GameObject>>();
@@ -27,7 +41,20 @@ namespace AsteroidBelt.GameManagement
             Camera camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             float height = maxZoomOut * 2;
             float width = height * camera.aspect;
-            gameModel = Model.GetInstance(234823, width, height, worldSideLength);
+            gameModel = Model.GetInstance(UnityEngine.Random.Range(int.MinValue, int.MaxValue), width, height, worldSideLength);
+        }
+
+        public void Refresh()
+        {
+            List<int> keys = gameObjectsByGrid.Keys.ToList();
+            foreach (var key in keys)
+            {
+                unloadGrid(key);
+            }
+            gameModel = Model.GetInstance();
+            int currentGrid = gameModel.WorldToGridIndex(gameObject.transform.position);
+            LoadNewAsteroids();
+            oldGrid = currentGrid;
         }
 
         private void CreateAsteroid(int grid, int id, AsteroidData data)
